@@ -1,43 +1,60 @@
 //
-//  UIView.h
-//  UIKit
+//  DNUIView.h
+//  DNUIKit
 //
-//  Created by Shaun Harrison on 4/30/09.
-//  Copyright 2009 enormego. All rights reserved.
+//  Created by Andrew Pouliot on 1/28/11.
+//  Copyright 2011 Darknoon. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-#import <UIKit/UIKitDefines.h>
+#import <Foundation/Foundation.h>
 
 enum {
-    UIViewAutoresizingNone					=  0,
-    UIViewAutoresizingFlexibleLeftMargin	=  1,
-    UIViewAutoresizingFlexibleWidth			=  2,
-    UIViewAutoresizingFlexibleRightMargin	=  4,
-    UIViewAutoresizingFlexibleTopMargin		=  8,
-    UIViewAutoresizingFlexibleHeight		= 16,
-    UIViewAutoresizingFlexibleBottomMargin	= 32
+    UIViewAutoresizingNone                 = 0,
+    UIViewAutoresizingFlexibleLeftMargin   = 1 << 0,
+    UIViewAutoresizingFlexibleWidth        = 1 << 1,
+    UIViewAutoresizingFlexibleRightMargin  = 1 << 2,
+    UIViewAutoresizingFlexibleTopMargin    = 1 << 3,
+    UIViewAutoresizingFlexibleHeight       = 1 << 4,
+    UIViewAutoresizingFlexibleBottomMargin = 1 << 5
 };
+typedef NSUInteger UIViewAutoresizing;
 
-@class UIColor, CALayer;
-@interface UIView : NSView {
+
+@class CALayer;
+@class UIColor;
+@interface UIView : NSResponder {
 @private
-	UIColor* _backgroundColor;
-	BOOL _needsLayout;
-	BOOL _opaque;
+	CALayer *layer;
+	//TODO: why don't other implementations have this, ie how do they retain the views?
+	NSMutableArray *subviews;
 }
 
-- (void)setNeedsDisplay;
++ (Class)layerClass;
+
+- (id)initWithFrame:(CGRect)inFrame;
 
 - (void)setNeedsLayout;
 - (void)layoutIfNeeded;
 - (void)layoutSubviews;
 
-@property(nonatomic,assign,getter=isOpaque) BOOL opaque;
-@property(nonatomic,retain) UIColor* backgroundColor;
-@end
+- (UIView *)superview;
+- (void)addSubview:(UIView *)inSubview;
+- (void)removeFromSuperview;
 
-@interface NSView (UIViewLayerBacking)
-@property(nonatomic,assign,getter=isHidden) BOOL hidden;
-@property(nonatomic,retain) CALayer* layer;
+@property(nonatomic) CGRect            frame;
+
+// use bounds/center and not frame if non-identity transform. if bounds dimension is odd, center may be have fractional part
+@property(nonatomic) CGRect            bounds;      // default bounds is zero origin, frame size. animatable
+//TODO: @property(nonatomic) CGPoint           center;      // center is center of frame. animatable
+//TODO: @property(nonatomic) CGAffineTransform transform;   // default is CGAffineTransformIdentity. animatable
+
+@property(nonatomic,readonly,retain)                 CALayer  *layer;              // returns view's layer. Will always return a non-nil value. view is layer's delegate
+
+@property(nonatomic,copy)            UIColor          *backgroundColor;            // default is nil
+
+
+
+//TODO: @property(nonatomic) BOOL               autoresizesSubviews; // default is YES. if set, subviews are adjusted according to their autoresizingMask if self.bounds changes
+@property(nonatomic) UIViewAutoresizing autoresizingMask;    // simple resize. default is UIViewAutoresizingNone
+
 @end

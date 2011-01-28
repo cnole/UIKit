@@ -16,9 +16,13 @@
 @synthesize textAlignment=_textAlignment, lineBreakMode=_lineBreakMode;
 @synthesize highlighted=_highlighted, highlightedTextColor=_highlightedTextColor;
 
++ (Class)layerClass;
+{
+	return [CATextLayer class];
+}
+
 - (id)initWithFrame:(NSRect)frame {
     if (self = [super initWithFrame:frame]) {
-		self.layer = [CATextLayer layer];
 		self.textColor = [UIColor blackColor];
 		self.font = [NSFont systemFontOfSize:17.0f];
 		self.textAlignment = UITextAlignmentLeft;
@@ -30,7 +34,6 @@
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
 	if((self = [super initWithCoder:aDecoder])) {
-		self.layer = [CATextLayer layer];
 		self.textColor = [UIColor blackColor];
 		self.font = [NSFont systemFontOfSize:17.0f];
 		self.textAlignment = UITextAlignmentLeft;

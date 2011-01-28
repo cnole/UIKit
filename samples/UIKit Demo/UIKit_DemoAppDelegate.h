@@ -14,8 +14,6 @@
     UIWindow *window;
 }
 
-@property (assign) IBOutlet UIWindow *window;
-
 - (IBAction)setBadge:(id)sender;
 
 @end

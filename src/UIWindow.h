@@ -12,10 +12,10 @@
 #import <UIKit/UIApplication.h>
 #import <UIKit/UIKitDefines.h>
 
-@interface UIWindow : NSWindow {
-	
+@interface UIWindow : UIView <NSWindowDelegate> {
+	NSWindow *nsWindow;
 }
 
-- (void)addSubview:(UIView *)aView;
+- (void)makeKeyAndVisible;                             // convenience. most apps call this to show the main window and also make it key. otherwise use view hidden property
 
 @end

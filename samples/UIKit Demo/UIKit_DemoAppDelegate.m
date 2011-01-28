@@ -11,12 +11,34 @@
 
 @implementation UIKit_DemoAppDelegate
 
-@synthesize window;
-
 - (void)applicationDidFinishLaunching:(UIApplication *)app {
 	// Insert code here to initialize your application
 	
-	[window makeKeyAndOrderFront:nil];
+	window = [[UIWindow alloc] initWithFrame:(CGRect) {.size.width = 300.f, .size.height = 400.f}];
+	
+	[window makeKeyAndVisible];
+	
+	CGRect bounds = NSRectToCGRect([window frame]);
+	
+	UIView *subviewA = [[UIView alloc] initWithFrame:(CGRect) {
+		.origin.y = bounds.size.height / 2.f,
+		.size.width = bounds.size.width / 2.f,
+		.size.height = bounds.size.height / 2.f,
+	}];
+	subviewA.backgroundColor = [UIColor blackColor];
+	[subviewA setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin];
+	
+	UIView *subviewB = [[UIView alloc] initWithFrame:(CGRect) {
+		.origin.x = bounds.size.width / 2.f,
+		.origin.y = bounds.size.height / 2.f,
+		.size.width = bounds.size.width  / 2.f,
+		.size.height = bounds.size.height / 2.f,
+	}];
+	subviewB.backgroundColor = [UIColor redColor];
+	[subviewB setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin];
+	
+	[window addSubview: subviewA];
+	[window addSubview: subviewB];
 }
 
 - (IBAction)setBadge:(id)sender {
