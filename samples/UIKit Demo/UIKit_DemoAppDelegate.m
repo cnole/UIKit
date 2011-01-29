@@ -8,6 +8,7 @@
 
 #import "UIKit_DemoAppDelegate.h"
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "MouseEventView.h"
 
@@ -41,6 +42,22 @@
 	
 	[window addSubview: subviewA];
 	[window addSubview: subviewB];
+	
+	UIView *blurView = [[UIView alloc] initWithFrame:(CGRect) {
+		.origin.x = 100,
+		.origin.y = 100,
+		.size.width = 200,
+		.size.height = 200,
+	}];
+	blurView.layer.borderColor = [UIColor redColor].CGColor;
+	
+	CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+	[filter setValue:[NSNumber numberWithFloat:20.0f] forKey:@"inputRadius"];
+	blurView.layer.masksToBounds = YES;
+	blurView.layer.backgroundFilters = [NSArray arrayWithObject:filter];
+	blurView.backgroundColor = [UIColor clearColor];
+	blurView.layer.opaque = NO;
+	[window addSubview:blurView];
 }
 
 - (IBAction)setBadge:(id)sender {
