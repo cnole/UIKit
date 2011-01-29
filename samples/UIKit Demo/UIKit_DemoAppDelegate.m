@@ -23,6 +23,11 @@
 	
 	CGRect bounds = NSRectToCGRect([window frame]);
 	
+	
+	UIImageView *imageView = [[[UIImageView alloc] initWithFrame:bounds] autorelease];
+	[imageView setImage:[UIImage imageNamed:@"image.jpg"]];
+	[window addSubview:imageView];
+	
 	UIView *subviewA = [[MouseEventView alloc] initWithFrame:(CGRect) {
 		.origin.y = bounds.size.height / 2.f,
 		.size.width = bounds.size.width / 2.f,
@@ -43,12 +48,14 @@
 	[window addSubview: subviewA];
 	[window addSubview: subviewB];
 	
+		
 	UIView *blurView = [[UIView alloc] initWithFrame:CGRectInset(window.bounds, 10, 10)];
 	blurView.layer.borderColor = [UIColor redColor].CGColor;
 	
 	CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
 	[filter setValue:[NSNumber numberWithFloat:20.0f] forKey:@"inputRadius"];
 	blurView.layer.masksToBounds = YES;
+	blurView.layer.opacity = 0.5;
 	blurView.layer.backgroundFilters = [NSArray arrayWithObject:filter];
 	blurView.backgroundColor = [UIColor clearColor];
 	blurView.layer.opaque = NO;

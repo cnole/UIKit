@@ -11,6 +11,16 @@
 
 @implementation MouseEventView
 
+- (id)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (!self) return self; 
+	
+	self.userInteractionEnabled = YES;
+	
+	return self;
+}
+
+
 - (void)mouseDown:(UIEvent *)inEvent;
 {
 	self.backgroundColor = [UIColor blueColor];

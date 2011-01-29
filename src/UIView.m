@@ -13,6 +13,8 @@
 
 @implementation UIView
 
+@synthesize userInteractionEnabled;
+
 + (Class)layerClass;
 {
 	return [CALayer class];
@@ -45,6 +47,7 @@
 - (void) dealloc
 {
 	[layer release];
+
 	[super dealloc];
 }
 
@@ -205,14 +208,16 @@
 
 
 //Assumes self contains point if converted to our coords
-//Return the recursive result of this method called on the first subview that contains point
+//Return the recursive result of this method called on the last subview that contains point
 //If no subview contains the point, return self
 - (UIView *)_hitTestHelper:(CGPoint)point inView:(UIView *)inView withEvent:(UIEvent *)event;
 {
-	for (UIView *subview in [self subviews]) {
-		CGPoint subviewPoint = [inView convertPoint:point toView:subview];
-		if ([subview pointInside:subviewPoint withEvent:event]) {
-			return [subview _hitTestHelper:point inView:inView withEvent:event];
+	for (UIView *subview in [[self subviews] reverseObjectEnumerator]) {
+		if (subview.userInteractionEnabled) {
+			CGPoint subviewPoint = [inView convertPoint:point toView:subview];
+			if ([subview pointInside:subviewPoint withEvent:event]) {
+				return [subview _hitTestHelper:point inView:inView withEvent:event];
+			}
 		}
 	}
 	return self;

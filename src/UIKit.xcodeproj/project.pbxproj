@@ -21,6 +21,10 @@
 		284CBB9F0FAA53D7007DBD91 /* UIKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		497B404412F38FA10051C59B /* UINSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B404212F38FA10051C59B /* UINSWindow.h */; };
 		497B404512F38FA10051C59B /* UINSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B404312F38FA10051C59B /* UINSWindow.m */; };
+		497B41E712F3A6820051C59B /* UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B41E512F3A6820051C59B /* UIImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		497B41E812F3A6820051C59B /* UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B41E612F3A6820051C59B /* UIImage.m */; };
+		497B425012F3A9990051C59B /* UIImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B424E12F3A9990051C59B /* UIImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		497B425112F3A9990051C59B /* UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B424F12F3A9990051C59B /* UIImageView.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		C3E48EC4112372A20061E0D8 /* UIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48EC2112372A20061E0D8 /* UIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +59,10 @@
 		32DBCF5E0370ADEE00C91783 /* UIKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKit_Prefix.pch; sourceTree = "<group>"; };
 		497B404212F38FA10051C59B /* UINSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINSWindow.h; sourceTree = "<group>"; };
 		497B404312F38FA10051C59B /* UINSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSWindow.m; sourceTree = "<group>"; };
+		497B41E512F3A6820051C59B /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
+		497B41E612F3A6820051C59B /* UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage.m; sourceTree = "<group>"; };
+		497B424E12F3A9990051C59B /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
+		497B424F12F3A9990051C59B /* UIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageView.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E48EC2112372A20061E0D8 /* UIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIApplication.h; sourceTree = "<group>"; };
@@ -146,6 +154,10 @@
 				C3E48EDA112373280061E0D8 /* UIWindow.m */,
 				497B404212F38FA10051C59B /* UINSWindow.h */,
 				497B404312F38FA10051C59B /* UINSWindow.m */,
+				497B41E512F3A6820051C59B /* UIImage.h */,
+				497B41E612F3A6820051C59B /* UIImage.m */,
+				497B424E12F3A9990051C59B /* UIImageView.h */,
+				497B424F12F3A9990051C59B /* UIImageView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -196,6 +208,8 @@
 				C3E48EDB112373280061E0D8 /* UIWindow.h in Headers */,
 				C3FA255011237D87007F0E75 /* UIGraphics.h in Headers */,
 				497B404412F38FA10051C59B /* UINSWindow.h in Headers */,
+				497B41E712F3A6820051C59B /* UIImage.h in Headers */,
+				497B425012F3A9990051C59B /* UIImageView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +286,8 @@
 				C3E48EDC112373280061E0D8 /* UIWindow.m in Sources */,
 				C3FA255111237D87007F0E75 /* UIGraphics.m in Sources */,
 				497B404512F38FA10051C59B /* UINSWindow.m in Sources */,
+				497B41E812F3A6820051C59B /* UIImage.m in Sources */,
+				497B425112F3A9990051C59B /* UIImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

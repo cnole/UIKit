@@ -28,7 +28,10 @@ typedef NSUInteger UIViewAutoresizing;
 	CALayer *layer;
 	//TODO: why don't other implementations have this, ie how do they retain the views?
 	NSMutableArray *subviews;
+	BOOL userInteractionEnabled;
 }
+
+@property (nonatomic, assign) BOOL userInteractionEnabled;
 
 + (Class)layerClass;
 
