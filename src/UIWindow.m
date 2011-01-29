@@ -12,7 +12,22 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UINSWindow.h"
 
+@interface UIWindow ()
+@property (nonatomic, retain) UIView *trackingView;
+@end
+
+
 @implementation UIWindow
+
+@synthesize trackingView;
+
+- (void)dealloc
+{
+	[trackingView release];
+	trackingView = nil;
+
+	[super dealloc];
+}
 
 - (id)initWithFrame:(NSRect)aFrame {
 	self = [super initWithFrame:aFrame];
@@ -55,14 +70,20 @@
 {
 	//If it's a mouse down event, find the responsible view
 	if ([event type] == NSLeftMouseDown) {
+		NSAssert(!trackingView, @"Already tracking a view! How so??");
 		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
 		if (hitView) {
-			[hitView mouseDown:event];
+			self.trackingView = hitView;
+			[trackingView mouseDown:event];
 		}
 	} else if ([event type] == NSLeftMouseUp) {
-		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
-		if (hitView) {
-			[hitView mouseUp:event];
+		if (trackingView) {
+			[trackingView mouseUp:event];
+			self.trackingView = nil;
+		}
+	} else if ([event type] == NSMouseMoved) {
+		if (trackingView) {
+			[trackingView mouseDragged:event];
 		}
 	}
 	

@@ -13,7 +13,9 @@
 #import <UIKit/UIKitDefines.h>
 
 @interface UIWindow : UIView <NSWindowDelegate> {
+@private
 	NSWindow *nsWindow;
+	UIView *trackingView;
 }
 
 - (void)makeKeyAndVisible;                             // convenience. most apps call this to show the main window and also make it key. otherwise use view hidden property

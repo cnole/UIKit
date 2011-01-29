@@ -43,12 +43,7 @@
 	[window addSubview: subviewA];
 	[window addSubview: subviewB];
 	
-	UIView *blurView = [[UIView alloc] initWithFrame:(CGRect) {
-		.origin.x = 100,
-		.origin.y = 100,
-		.size.width = 200,
-		.size.height = 200,
-	}];
+	UIView *blurView = [[UIView alloc] initWithFrame:CGRectInset(window.bounds, 10, 10)];
 	blurView.layer.borderColor = [UIColor redColor].CGColor;
 	
 	CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];

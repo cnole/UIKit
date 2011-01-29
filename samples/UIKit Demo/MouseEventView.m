@@ -21,4 +21,10 @@
 	self.backgroundColor = [UIColor greenColor];
 }
 
+- (void)mouseDragged:(UIEvent *)inEvent;
+{
+	//TODO: blah
+	CGPoint dragToPoint;
+}
+
 @end
