@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <UIKit/UIImage.h>
 #import <UIKit/UIGraphics.h>
 #import <UIKit/UIKitDefines.h>
 
@@ -21,16 +20,16 @@
 + (UIColor *)colorWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha;
 + (UIColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 + (UIColor *)colorWithCGColor:(CGColorRef)cgColor;
-+ (UIColor *)colorWithPatternImage:(UIImage *)image;
-+ (UIColor *)colorWithPatternImageRef:(CGImageRef)imageRef; // Not available on iPhone (UIImage on iPhone is a toll free bridge with CGImageRef)
+//TODO:+ (UIColor *)colorWithPatternImage:(UIImage *)image;
+//TODO:+ (UIColor *)colorWithPatternImageRef:(CGImageRef)imageRef; // Not available on iPhone (UIImage on iPhone is a toll free bridge with CGImageRef)
 
 // Initializers for creating non-autoreleased colors
 - (UIColor *)initWithWhite:(CGFloat)white alpha:(CGFloat)alpha;
 - (UIColor *)initWithHue:(CGFloat)hue saturation:(CGFloat)saturation brightness:(CGFloat)brightness alpha:(CGFloat)alpha;
 - (UIColor *)initWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
 - (UIColor *)initWithCGColor:(CGColorRef)cgColor;
-- (UIColor *)initWithPatternImage:(UIImage*)image;
-- (UIColor *)initWithPatternImageRef:(CGImageRef)imageRef;
+//TODO:- (UIColor *)initWithPatternImage:(UIImage*)image;
+//TODO:- (UIColor *)initWithPatternImageRef:(CGImageRef)imageRef;
 
 // Some convenience methods to create colors.  These colors will be as calibrated as possible.
 // These colors are cached.

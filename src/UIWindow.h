@@ -18,4 +18,6 @@
 
 - (void)makeKeyAndVisible;                             // convenience. most apps call this to show the main window and also make it key. otherwise use view hidden property
 
+- (void)sendEvent:(UIEvent *)event;
+
 @end

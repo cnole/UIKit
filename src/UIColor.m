@@ -30,13 +30,13 @@ CGColorRef CreatePatternColor(CGImageRef image);
 	return [[[UIColor alloc] initWithCGColor:cgColor] autorelease];
 }
 
-+ (UIColor *)colorWithPatternImage:(UIImage *)image {
-	return [[[UIColor alloc] initWithPatternImage:image] autorelease];
-}
+// + (UIColor *)colorWithPatternImage:(UIImage *)image {
+	// return [[[UIColor alloc] initWithPatternImage:image] autorelease];
+// }
 
-+ (UIColor *)colorWithPatternImageRef:(CGImageRef)imageRef {
-	return [[[UIColor alloc] initWithPatternImageRef:imageRef] autorelease];
-}
+// + (UIColor *)colorWithPatternImageRef:(CGImageRef)imageRef {
+	// return [[[UIColor alloc] initWithPatternImageRef:imageRef] autorelease];
+// }
 
 // Initializers for creating non-autoreleased colors
 - (UIColor *)initWithWhite:(CGFloat)white alpha:(CGFloat)alpha {
@@ -119,17 +119,17 @@ CGColorRef CreatePatternColor(CGImageRef image);
 	return self;
 }
 
-- (UIColor *)initWithPatternImage:(UIImage*)image {
-	return nil;
-}
+// - (UIColor *)initWithPatternImage:(UIImage*)image {
+	// return nil;
+// }
 
-- (UIColor *)initWithPatternImageRef:(CGImageRef)imageRef {
-	if((self = [super init])) {
-		CGColor = CreatePatternColor(imageRef);	
-	}
+// - (UIColor *)initWithPatternImageRef:(CGImageRef)imageRef {
+	// if((self = [super init])) {
+		// CGColor = CreatePatternColor(imageRef);	
+	// }
 	
-	return self;
-}
+	// return self;
+// }
 
 + (UIColor *)blackColor {
 	return [UIColor colorWithWhite:0.0f alpha:1.0f];

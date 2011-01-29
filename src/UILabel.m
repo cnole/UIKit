@@ -7,7 +7,6 @@
 //
 
 #import "UILabel.h"
-#import "UITextField.h"
 
 #import <QuartzCore/QuartzCore.h>
 

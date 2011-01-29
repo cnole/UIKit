@@ -15,13 +15,8 @@
 #import <UIKit/UIEvent.h>
 #import <UIKit/UIFont.h>
 #import <UIKit/UIGraphics.h>
-#import <UIKit/UIImage.h>
 #import <UIKit/UILabel.h>
 #import <UIKit/UIResponder.h>
-#import <UIKit/UIScrollView.h>
-#import <UIKit/UITableView.h>
-#import <UIKit/UITableViewCell.h>
 #import <UIKit/UIText.h>
-#import <UIKit/UITextField.h>
 #import <UIKit/UIView.h>
 #import <UIKit/UIWindow.h>

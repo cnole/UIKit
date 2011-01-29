@@ -10,6 +10,7 @@
 
 #import <UIKit/UIColor.h>
 #import <QuartzCore/QuartzCore.h>
+#import "UINSWindow.h"
 
 @implementation UIWindow
 
@@ -18,16 +19,14 @@
 	
 	self.backgroundColor = [UIColor whiteColor];
 	
-	nsWindow = [[NSWindow alloc] initWithContentRect:aFrame
-										 styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) 
-										   backing:NSBackingStoreBuffered defer:YES]; 
+	nsWindow = [[UINSWindow alloc] initWithUIWindow:self type:UINSWindowTypeTitled]; 
 	
 	[nsWindow setDelegate:self];
 	[[nsWindow contentView] setLayer:self.layer];
 	[[nsWindow contentView] setWantsLayer:YES];
 
 	//cause the nswindow to resize
-	[self setFrame:self.frame];
+	[self setFrame:aFrame];
 	
 	return self;
 }
@@ -52,9 +51,21 @@
 	}];
 }
 
-- (void)windowDidMove:(NSNotification *)notification;
+- (void)sendEvent:(UIEvent *)event;
 {
-
+	//If it's a mouse down event, find the responsible view
+	if ([event type] == NSLeftMouseDown) {
+		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
+		if (hitView) {
+			[hitView mouseDown:event];
+		}
+	} else if ([event type] == NSLeftMouseUp) {
+		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
+		if (hitView) {
+			[hitView mouseUp:event];
+		}
+	}
+	
 }
 
 - (void)makeKeyAndVisible;

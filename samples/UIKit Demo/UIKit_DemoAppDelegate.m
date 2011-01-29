@@ -9,6 +9,8 @@
 #import "UIKit_DemoAppDelegate.h"
 #import <UIKit/UIKit.h>
 
+#import "MouseEventView.h"
+
 @implementation UIKit_DemoAppDelegate
 
 - (void)applicationDidFinishLaunching:(UIApplication *)app {
@@ -20,7 +22,7 @@
 	
 	CGRect bounds = NSRectToCGRect([window frame]);
 	
-	UIView *subviewA = [[UIView alloc] initWithFrame:(CGRect) {
+	UIView *subviewA = [[MouseEventView alloc] initWithFrame:(CGRect) {
 		.origin.y = bounds.size.height / 2.f,
 		.size.width = bounds.size.width / 2.f,
 		.size.height = bounds.size.height / 2.f,
@@ -28,7 +30,7 @@
 	subviewA.backgroundColor = [UIColor blackColor];
 	[subviewA setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin];
 	
-	UIView *subviewB = [[UIView alloc] initWithFrame:(CGRect) {
+	UIView *subviewB = [[MouseEventView alloc] initWithFrame:(CGRect) {
 		.origin.x = bounds.size.width / 2.f,
 		.origin.y = bounds.size.height / 2.f,
 		.size.width = bounds.size.width  / 2.f,

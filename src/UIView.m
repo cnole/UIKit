@@ -77,7 +77,7 @@
 - (UIView *)superview;
 {
 	UIView *superview = [layer superlayer].delegate;
-	NSAssert1([superview isKindOfClass:[UIView class]], @"Bad superview (superlayer delegate) of type: %@!", superview);
+	NSAssert1(!superview || [superview isKindOfClass:[UIView class]], @"Bad superview (superlayer delegate) of type: %@!", superview);
 	return superview;
 	
 }
@@ -90,6 +90,11 @@
 		[superview->subviews removeObject:self];
 	}
 	[layer removeFromSuperlayer];
+}
+
+- (NSArray *)subviews;
+{
+	return [[subviews copy] autorelease];
 }
 
 #pragma mark -
@@ -151,6 +156,85 @@
 }
 
 #pragma mark -
+#pragma mark Event Handling
+
+- (BOOL)isDescendantOfView:(UIView *)inView;
+{
+	UIView *parent = [self superview];
+	while (parent && parent != inView) {
+		parent = [parent superview];
+	}
+	return parent != nil;
+}
+
+- (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)inView
+{
+	NSAssert(inView, @"window conversion UNIMPLEMENTED");
+	
+	//Only supported atm if view is a descendant of self or if self is a descendant of view (not siblings)
+	BOOL isDescendant = [inView isDescendantOfView:self];
+	BOOL isAncestor = [self isDescendantOfView:inView];
+	NSAssert(isDescendant || isAncestor, @"Sibling views not supported!");
+
+	if (isDescendant) {
+		UIView *currentView = inView;
+		while (currentView && currentView != self) {
+			CGRect foo = currentView.frame;
+			point.x += foo.origin.x;
+			point.y += foo.origin.y;
+			currentView = [currentView superview];
+		}
+	}
+	if (isAncestor) {
+		UIView *currentView = self;
+		while (currentView && currentView != inView) {
+			CGRect foo = currentView.frame;
+			point.x -= foo.origin.x;
+			point.y -= foo.origin.y;
+			currentView = [currentView superview];
+		}
+	}
+	
+	return point;
+}
+
+- (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)inView
+{
+	return [inView convertPoint:point fromView:self];
+}
+
+
+//Assumes self contains point if converted to our coords
+//Return the recursive result of this method called on the first subview that contains point
+//If no subview contains the point, return self
+- (UIView *)_hitTestHelper:(CGPoint)point inView:(UIView *)inView withEvent:(UIEvent *)event;
+{
+	for (UIView *subview in [self subviews]) {
+		CGPoint subviewPoint = [inView convertPoint:point toView:subview];
+		if ([subview pointInside:subviewPoint withEvent:event]) {
+			return [subview _hitTestHelper:point inView:inView withEvent:event];
+		}
+	}
+	return self;
+}
+
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
+{
+	if ([self pointInside:point withEvent:event]) {
+		return [self _hitTestHelper:point inView:self withEvent:event];
+	} else {
+		return nil;
+	}
+}
+
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+	return CGRectContainsPoint(self.bounds, point);
+}
+
+#pragma mark -
 #pragma mark Color
 
 
@@ -164,7 +248,10 @@
 	layer.backgroundColor = [inBackgroundColor CGColor];
 }
 
-
+- (BOOL)pointInside:(CGPoint)inPoint;
+{
+	return CGRectContainsPoint([self bounds], inPoint);
+}
 @end
 
 
