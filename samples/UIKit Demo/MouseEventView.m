@@ -33,8 +33,6 @@
 
 - (void)mouseDragged:(UIEvent *)inEvent;
 {
-	//TODO: blah
-	CGPoint dragToPoint;
 }
 
 @end

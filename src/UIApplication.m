@@ -8,6 +8,8 @@
 
 #import "UIApplication.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 NSString *const UIApplicationDidFinishLaunchingNotification = @"UIApplicationDidFinishLaunchingNotification";
 NSString *const UIApplicationDidBecomeActiveNotification = @"UIApplicationDidBecomeActiveNotification";
 
@@ -75,7 +77,8 @@ static UIApplication *sharedApplication = nil;
 }
 
 - (id)init {
-	if(self = [super init]) {
+	self = [super init];
+	if(self) {
 		NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
 		
 		if([info valueForKey:@"CFBundleURLTypes"]) {
@@ -91,6 +94,47 @@ static UIApplication *sharedApplication = nil;
 	return self;
 }
 
+- (void)run
+{
+	if ([delegate respondsToSelector:@selector(applicationDidFinishLaunching:)])
+		[delegate applicationDidFinishLaunching:self];
+
+	[[NSNotificationCenter defaultCenter]
+	 postNotificationName:NSApplicationDidFinishLaunchingNotification
+	 object:NSApp];
+
+	[[NSNotificationCenter defaultCenter]
+	 postNotificationName:UIApplicationDidFinishLaunchingNotification
+	 object:self];
+	
+	shouldKeepRunning = YES;
+	do
+	{
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+		[CATransaction begin];
+		[CATransaction setDisableActions:YES];
+		
+		NSEvent *event = [NSApp
+						  nextEventMatchingMask:NSAnyEventMask
+						  untilDate:[NSDate distantFuture]
+						  inMode:NSDefaultRunLoopMode
+						  dequeue:YES];
+		
+		[self sendEvent:event];
+		
+		[CATransaction commit];
+		
+		[pool release];
+	} while (shouldKeepRunning);
+}
+
+- (void)terminate:(id)sender
+{
+	shouldKeepRunning = NO;
+}
+
+
 - (void)setApplicationIconBadgeNumber:(NSInteger)num {
 	if(num == applicationIconBadgeNumber)
 		return;
@@ -102,23 +146,6 @@ static UIApplication *sharedApplication = nil;
 	} else {
 		[[[NSApplication sharedApplication] dockTile] setBadgeLabel:nil];
 	}
-}
-
-- (UIWindow *)keyWindow {
-	return (UIWindow *)[[NSApplication sharedApplication] keyWindow];
-}
-
-- (NSArray *)windows {
-	NSArray *windows = [[[NSApplication sharedApplication] windows] copy];
-	NSMutableArray *uiWindows = [[NSMutableArray array] copy];
-	
-	for(NSWindow *window in windows) {
-		[uiWindows addObject:(UIWindow *)window];
-	}
-	
-	[windows release];
-	
-	return [uiWindows autorelease];
 }
 
 - (void)sendEvent:(UIEvent *)event {
@@ -139,10 +166,6 @@ static UIApplication *sharedApplication = nil;
 
 - (void)unhideAllApplications:(id)sender {
 	[[NSApplication sharedApplication] unhideAllApplications:sender];
-}
-
-- (void)terminate:(id)sender {
-	[[NSApplication sharedApplication] terminate:sender];
 }
 
 - (void)replyToApplicationShouldTerminate:(BOOL)shouldTerminate {
@@ -186,3 +209,32 @@ static UIApplication *sharedApplication = nil;
 }
 
 @end
+
+
+int UIApplicationMain(int argc, char *argv[], NSString *principalClassName, NSString *delegateClassName)
+{	
+	if (principalClassName || delegateClassName) {
+		NSLog(@"principalClassName or delegateClassName UNIMPLEMENTED in UIApplicationMain");
+	};
+	
+	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+	Class principalClass =
+	NSClassFromString([infoDictionary objectForKey:@"NSPrincipalClass"]);
+	NSApplication *applicationObject = [principalClass sharedApplication];
+	
+	NSString *mainNibName = [infoDictionary objectForKey:@"NSMainNibFile"];
+	NSNib *mainNib = [[NSNib alloc] initWithNibNamed:mainNibName bundle:[NSBundle mainBundle]];
+	[mainNib instantiateNibWithOwner:NSApp topLevelObjects:nil];
+	
+	if ([applicationObject respondsToSelector:@selector(run)])
+	{
+		[applicationObject
+		 performSelectorOnMainThread:@selector(run)
+		 withObject:nil
+		 waitUntilDone:YES];
+	}
+	
+	[mainNib release];
+	
+	return 0;
+}

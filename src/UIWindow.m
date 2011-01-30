@@ -70,7 +70,7 @@
 {
 	//If it's a mouse down event, find the responsible view
 	if ([event type] == NSLeftMouseDown) {
-		NSAssert(!trackingView, @"Already tracking a view! How so??");
+		//NSAssert(!trackingView, @"Already tracking a view! How so??");
 		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
 		if (hitView) {
 			self.trackingView = hitView;

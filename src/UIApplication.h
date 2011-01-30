@@ -36,6 +36,7 @@ UIKIT_EXTERN_CLASS @interface UIApplication : UIResponder <NSApplicationDelegate
 	NSMenu *dockMenu;
 	
 	NSInteger applicationIconBadgeNumber;
+	BOOL shouldKeepRunning;
 	BOOL shouldTerminateAfterLastWindowClosed;
 }
 
@@ -48,8 +49,8 @@ UIKIT_EXTERN_CLASS @interface UIApplication : UIResponder <NSApplicationDelegate
 
 - (void)sendEvent:(UIEvent *)event;
 
-@property(nonatomic,readonly) UIWindow *keyWindow;
-@property(nonatomic,readonly) NSArray  *windows;
+//@property(nonatomic,readonly) UIWindow *keyWindow;
+//@property(nonatomic,readonly) NSArray  *windows;
 
 @property(nonatomic) NSInteger applicationIconBadgeNumber;  // set to 0 to hide. default is 0
 
@@ -60,13 +61,13 @@ UIKIT_EXTERN_CLASS @interface UIApplication : UIResponder <NSApplicationDelegate
 
 @interface UIApplication (NSApplicationAdditions)
 
-- (void)hide:(id)sender;
-- (void)unhide:(id)sender;
+- (IBAction)hide:(id)sender;
+- (IBAction)unhide:(id)sender;
 
-- (void)hideOtherApplications:(id)sender;
-- (void)unhideAllApplications:(id)sender;
+- (IBAction)hideOtherApplications:(id)sender;
+- (IBAction)unhideAllApplications:(id)sender;
 
-- (void)terminate:(id)sender;
+- (IBAction)terminate:(id)sender;
 
 - (void)replyToApplicationShouldTerminate:(BOOL)shouldTerminate;
 
