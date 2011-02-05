@@ -24,6 +24,11 @@
 	CGRect bounds = NSRectToCGRect([window frame]);
 	
 	
+	scrollView = [[UIScrollView alloc] initWithFrame:bounds];
+	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	scrollView.backgroundColor = [UIColor brownColor];
+	[window addSubview:scrollView];
+	
 	UIImageView *imageView = [[[UIImageView alloc] initWithFrame:bounds] autorelease];
 	[imageView setImage:[UIImage imageNamed:@"image.jpg"]];
 	[window addSubview:imageView];
@@ -45,10 +50,13 @@
 	subviewB.backgroundColor = [UIColor redColor];
 	[subviewB setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin];
 	
-	[window addSubview: subviewA];
-	[window addSubview: subviewB];
-	
+	[scrollView addSubview: subviewA];
+	[scrollView addSubview: subviewB];
 		
+}
+
+- (void)addSuperfluousBlurLayer;
+{
 	UIView *blurView = [[UIView alloc] initWithFrame:CGRectInset(window.bounds, 10, 10)];
 	blurView.layer.borderColor = [UIColor redColor].CGColor;
 	
@@ -59,7 +67,7 @@
 	blurView.layer.backgroundFilters = [NSArray arrayWithObject:filter];
 	blurView.backgroundColor = [UIColor clearColor];
 	blurView.layer.opaque = NO;
-	[window addSubview:blurView];
+	[window addSubview:blurView];	
 }
 
 - (IBAction)setBadge:(id)sender {

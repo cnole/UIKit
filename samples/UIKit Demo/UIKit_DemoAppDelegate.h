@@ -6,12 +6,14 @@
 //  Copyright 2010 New Media Geekz. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <UIKit/UIKit.h>
 
 @class UIWindow;
 
 @interface UIKit_DemoAppDelegate : NSObject {
     UIWindow *window;
+	
+	UIScrollView *scrollView;
 }
 
 - (IBAction)setBadge:(id)sender;

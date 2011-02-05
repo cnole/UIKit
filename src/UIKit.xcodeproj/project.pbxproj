@@ -25,6 +25,10 @@
 		497B41E812F3A6820051C59B /* UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B41E612F3A6820051C59B /* UIImage.m */; };
 		497B425012F3A9990051C59B /* UIImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B424E12F3A9990051C59B /* UIImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		497B425112F3A9990051C59B /* UIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B424F12F3A9990051C59B /* UIImageView.m */; };
+		499267DD12F4E4DA0070F372 /* UIScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 499267DB12F4E4DA0070F372 /* UIScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		499267DE12F4E4DA0070F372 /* UIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 499267DC12F4E4DA0070F372 /* UIScrollView.m */; };
+		499267E812F5E7C50070F372 /* UIScrollKnob.h in Headers */ = {isa = PBXBuildFile; fileRef = 499267E612F5E7C50070F372 /* UIScrollKnob.h */; };
+		499267E912F5E7C50070F372 /* UIScrollKnob.m in Sources */ = {isa = PBXBuildFile; fileRef = 499267E712F5E7C50070F372 /* UIScrollKnob.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		C3E48EC4112372A20061E0D8 /* UIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48EC2112372A20061E0D8 /* UIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +67,10 @@
 		497B41E612F3A6820051C59B /* UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImage.m; sourceTree = "<group>"; };
 		497B424E12F3A9990051C59B /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
 		497B424F12F3A9990051C59B /* UIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageView.m; sourceTree = "<group>"; };
+		499267DB12F4E4DA0070F372 /* UIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollView.h; sourceTree = "<group>"; };
+		499267DC12F4E4DA0070F372 /* UIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollView.m; sourceTree = "<group>"; };
+		499267E612F5E7C50070F372 /* UIScrollKnob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollKnob.h; sourceTree = "<group>"; };
+		499267E712F5E7C50070F372 /* UIScrollKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollKnob.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3E48EC2112372A20061E0D8 /* UIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIApplication.h; sourceTree = "<group>"; };
@@ -131,6 +139,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				284CBB4D0FAA5201007DBD91 /* UIKit.h */,
 				C3E48EC2112372A20061E0D8 /* UIApplication.h */,
 				C3E48EC3112372A20061E0D8 /* UIApplication.m */,
 				28092F9E1013793B00AE0F9A /* UIColor.h */,
@@ -141,7 +150,6 @@
 				280934401013A99F00AE0F9A /* UIFont.m */,
 				C3FA254E11237D87007F0E75 /* UIGraphics.h */,
 				C3FA254F11237D87007F0E75 /* UIGraphics.m */,
-				284CBB4D0FAA5201007DBD91 /* UIKit.h */,
 				284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */,
 				28092F8F101378D600AE0F9A /* UILabel.h */,
 				28092F90101378D600AE0F9A /* UILabel.m */,
@@ -158,6 +166,10 @@
 				497B41E612F3A6820051C59B /* UIImage.m */,
 				497B424E12F3A9990051C59B /* UIImageView.h */,
 				497B424F12F3A9990051C59B /* UIImageView.m */,
+				499267DB12F4E4DA0070F372 /* UIScrollView.h */,
+				499267DC12F4E4DA0070F372 /* UIScrollView.m */,
+				499267E612F5E7C50070F372 /* UIScrollKnob.h */,
+				499267E712F5E7C50070F372 /* UIScrollKnob.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -210,6 +222,8 @@
 				497B404412F38FA10051C59B /* UINSWindow.h in Headers */,
 				497B41E712F3A6820051C59B /* UIImage.h in Headers */,
 				497B425012F3A9990051C59B /* UIImageView.h in Headers */,
+				499267DD12F4E4DA0070F372 /* UIScrollView.h in Headers */,
+				499267E812F5E7C50070F372 /* UIScrollKnob.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +302,8 @@
 				497B404512F38FA10051C59B /* UINSWindow.m in Sources */,
 				497B41E812F3A6820051C59B /* UIImage.m in Sources */,
 				497B425112F3A9990051C59B /* UIImageView.m in Sources */,
+				499267DE12F4E4DA0070F372 /* UIScrollView.m in Sources */,
+				499267E912F5E7C50070F372 /* UIScrollKnob.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

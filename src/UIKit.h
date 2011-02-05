@@ -22,3 +22,4 @@
 #import <UIKit/UIWindow.h>
 #import <UIKit/UIImageView.h>
 #import <UIKit/UIImage.h>
+#import <UIKit/UIScrollView.h>

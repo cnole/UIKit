@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "UIView.h"
 
-@interface UIScrollKnob : UIScrollKnob {
+@interface UIScrollKnob : UIView {
 @private
     
 }

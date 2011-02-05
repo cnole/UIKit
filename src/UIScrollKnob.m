@@ -7,7 +7,7 @@
 //
 
 #import "UIScrollKnob.h"
-
+#import "UIKit.h"
 
 @implementation UIScrollKnob
 
@@ -17,6 +17,15 @@
     }
     
     return self;
+}
+
+- (void)drawRect:(CGRect)inRect;
+{
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+	
+	[[UIColor whiteColor] set];
+	CGContextFillRect(ctx, inRect);
+	
 }
 
 - (void)dealloc {

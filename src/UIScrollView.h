@@ -10,22 +10,15 @@
 #import <UIKit/UIKitDefines.h>
 #import <UIKit/UIView.h>
 
-@interface UIScrollView : NSScrollView {
+@interface UIScrollView : UIView {
 @private
-	UIColor* _backgroundColor;
+	UIView *contentView;
+	UIView *scroller;
 }
 
-- (void)superSetBackgroundColor:(NSColor*)aColor;
+@property(nonatomic,assign) NSSize contentSize; // contentOffset on iPhone
+@property(nonatomic,assign) NSPoint contentOffset; // contentOffset on iPhone
 
-/*
- IMPORTANT:
- -----------------------------------------------------------------------------
- NSScrollView uses the contentSize/Offset properties differently
- than the way they're used on the iPhone.  Wherever you use contentSize/Offset
- on the iPhone, use documentSize/Offset on Mac.
- */
-@property(nonatomic,assign) NSSize documentSize; // contentOffset on iPhone
-@property(nonatomic,assign) NSPoint documentOffset; // contentOffset on iPhone
+@property (nonatomic, readonly, retain) UIView *contentView;
 
-@property(nonatomic,retain) UIColor* backgroundColor;
 @end

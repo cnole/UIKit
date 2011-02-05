@@ -7,95 +7,78 @@
 //
 
 #import "UIScrollView.h"
-#import "UIClipView.h"
 #import "UIColor.h"
+#import "UIScrollKnob.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface UIScrollView (Private)
-@property(nonatomic,retain) UIView* documentView;
-@end
-
-
 @implementation UIScrollView
-@synthesize backgroundColor=_backgroundColor;
+@synthesize contentView;
 
 - (void)setupScrollViewDefaults {
-	self.layer = [CALayer layer];
-	
-	self.contentView = [[[UIClipView alloc] initWithFrame:self.bounds] autorelease];
-	self.contentView.wantsLayer = YES;
-	self.hasVerticalScroller = YES;
-	self.hasHorizontalScroller = YES;
-	self.autohidesScrollers = YES;
-	self.documentView = [[[UIView alloc] initWithFrame:self.bounds] autorelease];
-	
-	self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;	
 }
 
 - (id)initWithFrame:(NSRect)frameRect {
-	if((self = [super initWithFrame:frameRect])) {
-		[self setupScrollViewDefaults];
-	}
+	self = [super initWithFrame:frameRect];
+	if (!self) return nil;
+	
+	contentView = [[UIView alloc] initWithFrame:self.bounds];	
+	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;	
+
+	scroller = [[UIScrollKnob alloc] initWithFrame:CGRectZero];
+	scroller.backgroundColor = [UIColor redColor];
+	[super addSubview:scroller];
+
 	
 	return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-	if((self = [super initWithCoder:aDecoder])) {
-		[self setupScrollViewDefaults];
-	}
+- (void)layoutSubviews;
+{
+	[super layoutSubviews];
 	
-	return self;
+	CGRect bounds = self.bounds;
+	scroller.frame = (CGRect) {
+		.origin.x = bounds.size.width - 10.f,
+		.origin.y = 10.f,
+		.size.height = bounds.size.height - 20.f,
+		.size.width = 10.f,
+	};
 }
 
-- (void)setDocumentSize:(NSSize)aSize {
-	NSRect aRect = self.documentView.frame;
+- (void)setContentSize:(NSSize)aSize {
+	NSRect aRect = self.contentView.frame;
 	aRect.size = aSize;
-	self.documentView.frame = aRect;
+	self.contentView.frame = aRect;
 }
 
 - (NSSize)documentSize {
-	return self.documentView.frame.size;	
+	return self.contentView.frame.size;	
 }
 
-- (void)setDocumentOffset:(NSPoint)aPoint {
-	
+- (CGSize)contentSize;
+{
+	return contentView.bounds.size;
 }
 
-- (NSPoint)documentOffset {
-	return NSMakePoint(0.0f, 0.0f);
+- (void)setContentOffset:(NSPoint)aPoint {
+	CGRect bounds = contentView.bounds;
+	bounds.origin = aPoint;
+	contentView.bounds = bounds;
+}
+
+- (NSPoint)contentOffset {
+	return contentView.bounds.origin;
 }
 
 - (void)addSubview:(UIView*)aView {
-	if([aView isKindOfClass:[NSClipView class]]) {
-		[super addSubview:aView];
-	} else if([aView isKindOfClass:[NSScroller class]]) {
-		[super addSubview:aView];
-	} else {
-		[self.documentView addSubview:aView];
-	}
+	[self.contentView addSubview:aView];
 }
 
-- (BOOL)isFlipped {
-	return YES;
-}
-
-- (void)setBackgroundColor:(UIColor *)aColor {
-	[_backgroundColor release];
-	_backgroundColor = [aColor retain];
-	
-	self.documentView.backgroundColor = aColor;
-	self.contentView.backgroundColor = aColor.NSColor;
-	[super setBackgroundColor:aColor.NSColor];
-}
-
-- (void)superSetBackgroundColor:(NSColor*)aColor {
-	[super setBackgroundColor:aColor];
-}
 
 - (void)dealloc {
-	[_backgroundColor release];
+	[contentView release];
+	[scroller release];
 	[super dealloc];
 }
 
