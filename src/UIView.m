@@ -261,4 +261,9 @@
 	UIGraphicsPopContext();
 }
 
+- (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
+{
+	return (id)[NSNull null];
+}
+
 @end
