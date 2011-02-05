@@ -19,6 +19,9 @@
 		284CBB4F0FAA5201007DBD91 /* UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 284CBB4D0FAA5201007DBD91 /* UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		284CBB530FAA523F007DBD91 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284CBB520FAA523F007DBD91 /* QuartzCore.framework */; };
 		284CBB9F0FAA53D7007DBD91 /* UIKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		494908E512FD225E0035C367 /* CGRoundRect.c in Sources */ = {isa = PBXBuildFile; fileRef = 494908E312FD225E0035C367 /* CGRoundRect.c */; };
+		494908E612FD225E0035C367 /* CGRoundRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 494908E412FD225E0035C367 /* CGRoundRect.h */; };
+		494908E812FD23A70035C367 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494908E712FD23A70035C367 /* ApplicationServices.framework */; };
 		497B404412F38FA10051C59B /* UINSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B404212F38FA10051C59B /* UINSWindow.h */; };
 		497B404512F38FA10051C59B /* UINSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B404312F38FA10051C59B /* UINSWindow.m */; };
 		497B41E712F3A6820051C59B /* UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B41E512F3A6820051C59B /* UIImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +64,9 @@
 		284CBB520FAA523F007DBD91 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitDefines.h; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* UIKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKit_Prefix.pch; sourceTree = "<group>"; };
+		494908E312FD225E0035C367 /* CGRoundRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CGRoundRect.c; sourceTree = "<group>"; };
+		494908E412FD225E0035C367 /* CGRoundRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGRoundRect.h; sourceTree = "<group>"; };
+		494908E712FD23A70035C367 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		497B404212F38FA10051C59B /* UINSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINSWindow.h; sourceTree = "<group>"; };
 		497B404312F38FA10051C59B /* UINSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSWindow.m; sourceTree = "<group>"; };
 		497B41E512F3A6820051C59B /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
@@ -90,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				494908E812FD23A70035C367 /* ApplicationServices.framework in Frameworks */,
 				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
 				284CBB530FAA523F007DBD91 /* QuartzCore.framework in Frameworks */,
 			);
@@ -170,6 +177,8 @@
 				499267DC12F4E4DA0070F372 /* UIScrollView.m */,
 				499267E612F5E7C50070F372 /* UIScrollKnob.h */,
 				499267E712F5E7C50070F372 /* UIScrollKnob.m */,
+				494908E412FD225E0035C367 /* CGRoundRect.h */,
+				494908E312FD225E0035C367 /* CGRoundRect.c */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -177,6 +186,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				494908E712FD23A70035C367 /* ApplicationServices.framework */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -224,6 +234,7 @@
 				497B425012F3A9990051C59B /* UIImageView.h in Headers */,
 				499267DD12F4E4DA0070F372 /* UIScrollView.h in Headers */,
 				499267E812F5E7C50070F372 /* UIScrollKnob.h in Headers */,
+				494908E612FD225E0035C367 /* CGRoundRect.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +315,7 @@
 				497B425112F3A9990051C59B /* UIImageView.m in Sources */,
 				499267DE12F4E4DA0070F372 /* UIScrollView.m in Sources */,
 				499267E912F5E7C50070F372 /* UIScrollKnob.m in Sources */,
+				494908E512FD225E0035C367 /* CGRoundRect.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

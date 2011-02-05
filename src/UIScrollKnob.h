@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "UIView.h"
+#import "UIScrollView.h"
 
 @interface UIScrollKnob : UIView {
 @private
-    
+    UIScrollView *scrollView;
 }
+
+- (id)initWithScrollView:(UIScrollView *)inScrollView;
 
 @end

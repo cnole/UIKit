@@ -13,6 +13,16 @@
 
 @synthesize image;
 
+- (id)initWithFrame:(CGRect)inFrame;
+{
+	self = [super initWithFrame:inFrame];
+	if (!self) return nil;
+	
+	self.userInteractionEnabled = NO;
+	
+	return self;
+}
+
 - (void)setImage:(UIImage *)inImage;
 {
 	[image autorelease];

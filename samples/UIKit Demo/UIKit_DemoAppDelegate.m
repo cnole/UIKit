@@ -27,11 +27,12 @@
 	scrollView = [[UIScrollView alloc] initWithFrame:bounds];
 	scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	scrollView.backgroundColor = [UIColor brownColor];
+	scrollView.contentSize = (CGSize) {.height = 1000.0f};
 	[window addSubview:scrollView];
 	
 	UIImageView *imageView = [[[UIImageView alloc] initWithFrame:bounds] autorelease];
 	[imageView setImage:[UIImage imageNamed:@"image.jpg"]];
-	[window addSubview:imageView];
+	[scrollView addSubview:imageView];
 	
 	UIView *subviewA = [[MouseEventView alloc] initWithFrame:(CGRect) {
 		.origin.y = bounds.size.height / 2.f,
@@ -39,7 +40,6 @@
 		.size.height = bounds.size.height / 2.f,
 	}];
 	subviewA.backgroundColor = [UIColor blackColor];
-	[subviewA setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin];
 	
 	UIView *subviewB = [[MouseEventView alloc] initWithFrame:(CGRect) {
 		.origin.x = bounds.size.width / 2.f,
@@ -48,7 +48,6 @@
 		.size.height = bounds.size.height / 2.f,
 	}];
 	subviewB.backgroundColor = [UIColor redColor];
-	[subviewB setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin];
 	
 	[scrollView addSubview: subviewA];
 	[scrollView addSubview: subviewB];

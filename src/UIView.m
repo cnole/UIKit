@@ -37,8 +37,8 @@
 	layer.delegate = self;
 	subviews = [[NSMutableArray alloc] init];
 	
-	self.backgroundColor = [UIColor redColor];
-	
+	userInteractionEnabled = YES;
+		
 	[self setFrame:inFrame];
 	
 	return self;

@@ -25,11 +25,8 @@
 
 - (void)sendEvent:(NSEvent *)inEvent;
 {
-	//TODO: support more event types
-	if ([inEvent type] == NSLeftMouseDown || [inEvent type] == NSLeftMouseUp) {
-		//TODO: create a new UIEvent for this baby
-		[uiWindow sendEvent:inEvent];
-	}		
+	//TODO: fix me
+	[uiWindow sendEvent:inEvent];
 	[super sendEvent:inEvent];
 }
 

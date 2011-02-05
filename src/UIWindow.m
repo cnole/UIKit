@@ -87,7 +87,7 @@
 			[trackingView mouseUp:event];
 		}
 		self.trackingView = nil;
-	} else if ([event type] == NSMouseMoved) {
+	} else if ([event type] == NSLeftMouseDragged) {
 		if (trackingView) {
 			[trackingView mouseDragged:event];
 		}

@@ -8,24 +8,35 @@
 
 #import "UIScrollKnob.h"
 #import "UIKit.h"
+#import "CGRoundRect.h"
+
+@interface UIScrollView (UIScrollKnobPrivate)
+- (void)_scrollerScrolled:(UIScrollKnob *)inScrollKnob withEvent:(NSEvent *)inEvent;
+@end
 
 @implementation UIScrollKnob
 
-- (id)init {
-    if ((self = [super init])) {
-        // Initialization code here.
-    }
-    
-    return self;
+- (id)initWithScrollView:(UIScrollView *)inScrollView;
+{
+	self = [super initWithFrame:CGRectZero];
+	scrollView = inScrollView;
+	
+	return self;
 }
-
 - (void)drawRect:(CGRect)inRect;
 {
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	
 	[[UIColor whiteColor] set];
-	CGContextFillRect(ctx, inRect);
-	
+	CGContextBeginPath(ctx);
+	CGContextAddRoundRect(ctx, inRect, inRect.size.width / 2.0f);
+	CGContextFillPath(ctx);
+}
+
+
+- (void)mouseDragged:(NSEvent *)theEvent;
+{
+	[scrollView _scrollerScrolled:self withEvent:theEvent];
 }
 
 - (void)dealloc {
