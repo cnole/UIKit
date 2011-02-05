@@ -71,6 +71,11 @@
 	//TODO: auto-sizing?
 }
 
+- (void)setNeedsDisplay;
+{
+	[layer setNeedsDisplay];
+}
+
 - (void)addSubview:(UIView *)inSubview;
 {
 	[subviews addObject:inSubview];
@@ -105,37 +110,14 @@
 
 - (void)setFrame:(CGRect)inFrame;
 {
-#if 0
-	CGPoint center =  (CGPoint) {
-		CGRectGetMidX(inFrame),
-		CGRectGetMidY(inFrame),
-	};
-	
-	layer.position = center;
-	layer.frame = (CGRect) {
-		.origin.x = center.x - inFrame.size.width / 2.f,
-		.origin.y = center.y - inFrame.size.height / 2.f,
-		.size = inFrame.size,
-	};
-#else
 	layer.frame = inFrame;
-#endif
+	//TODO: only if content mode set to redraw!
+	[self setNeedsDisplay];
 }
 
 - (CGRect)frame;
 {
-#if 0
-	//TODO: allow center that's not 0.5, 0.5
-	CGRect layerBounds = layer.bounds;
-	CGPoint layerPosition = layer.position;
-	return (CGRect) {
-		.origin.x = layerPosition.x - layerBounds.size.width / 2.0f,
-		.origin.y = layerPosition.y - layerBounds.size.height / 2.0f,
-		.size = layerBounds.size,
-	};
-#else
 	return layer.frame;
-#endif
 }
 
 - (void)setBounds:(CGRect)inBounds;
@@ -268,6 +250,15 @@
 	NSAssert(inLayer == layer, @"Not the layer we were expecting");
 	
 	[self layoutSubviews];
+}
+
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+{
+	UIGraphicsPushContext(ctx);
+	if ([self respondsToSelector:@selector(drawRect:)]) {
+		[self drawRect:self.bounds];
+	}
+	UIGraphicsPopContext();
 }
 
 @end

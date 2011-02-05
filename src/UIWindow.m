@@ -61,32 +61,39 @@
 
 - (void)windowDidResize:(NSNotification *)notification
 {
-	[super setFrame:(CGRect) {
+	[CATransaction begin];
+	[CATransaction setDisableActions:YES];
+	[self.layer setFrame:(CGRect) {
 		.size = [nsWindow frame].size
 	}];
+	[CATransaction commit];
 }
 
 - (void)sendEvent:(UIEvent *)event;
 {
+	[CATransaction begin];
+	[CATransaction setDisableActions:YES];
+
 	//If it's a mouse down event, find the responsible view
 	if ([event type] == NSLeftMouseDown) {
-		NSAssert(!trackingView, @"Already tracking a view! How so??");
+		//NSAssert(!trackingView, @"Already tracking a view! How so??");
 		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
+		self.trackingView = hitView;
 		if (hitView) {
-			self.trackingView = hitView;
 			[trackingView mouseDown:event];
 		}
 	} else if ([event type] == NSLeftMouseUp) {
 		if (trackingView) {
 			[trackingView mouseUp:event];
-			self.trackingView = nil;
 		}
+		self.trackingView = nil;
 	} else if ([event type] == NSMouseMoved) {
 		if (trackingView) {
 			[trackingView mouseDragged:event];
 		}
 	}
-	
+	[CATransaction commit];
+
 }
 
 - (void)makeKeyAndVisible;

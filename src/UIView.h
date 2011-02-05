@@ -41,9 +41,13 @@ typedef NSUInteger UIViewAutoresizing;
 - (void)layoutIfNeeded;
 - (void)layoutSubviews;
 
+- (void)setNeedsDisplay;
+
 - (UIView *)superview;
 - (void)addSubview:(UIView *)inSubview;
 - (void)removeFromSuperview;
+
+- (void)drawRect:(CGRect)inRect;
 
 @property (nonatomic, readonly, copy) NSArray *subviews;
 
