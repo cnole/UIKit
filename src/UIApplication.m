@@ -8,6 +8,8 @@
 
 #import "UIApplication.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 NSString *const UIApplicationDidFinishLaunchingNotification = @"UIApplicationDidFinishLaunchingNotification";
 NSString *const UIApplicationDidBecomeActiveNotification = @"UIApplicationDidBecomeActiveNotification";
 
@@ -75,7 +77,8 @@ static UIApplication *sharedApplication = nil;
 }
 
 - (id)init {
-	if(self = [super init]) {
+	self = [super init];
+	if(self) {
 		NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
 		
 		if([info valueForKey:@"CFBundleURLTypes"]) {
@@ -104,23 +107,6 @@ static UIApplication *sharedApplication = nil;
 	}
 }
 
-- (UIWindow *)keyWindow {
-	return (UIWindow *)[[NSApplication sharedApplication] keyWindow];
-}
-
-- (NSArray *)windows {
-	NSArray *windows = [[[NSApplication sharedApplication] windows] copy];
-	NSMutableArray *uiWindows = [[NSMutableArray array] copy];
-	
-	for(NSWindow *window in windows) {
-		[uiWindows addObject:(UIWindow *)window];
-	}
-	
-	[windows release];
-	
-	return [uiWindows autorelease];
-}
-
 - (void)sendEvent:(NSEvent *)event {
 	[[NSApplication sharedApplication] sendEvent:event];
 }
@@ -139,10 +125,6 @@ static UIApplication *sharedApplication = nil;
 
 - (void)unhideAllApplications:(id)sender {
 	[[NSApplication sharedApplication] unhideAllApplications:sender];
-}
-
-- (void)terminate:(id)sender {
-	[[NSApplication sharedApplication] terminate:sender];
 }
 
 - (void)replyToApplicationShouldTerminate:(BOOL)shouldTerminate {
