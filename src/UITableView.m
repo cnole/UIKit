@@ -41,11 +41,11 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	_visibleCells = [[NSMutableArray alloc] init];
 	_sectionData = [[NSMutableArray alloc] init];
 	
-	self.hasVerticalScroller = YES;
-	self.hasHorizontalScroller = NO;
-	self.autohidesScrollers = NO;
+//	self.hasVerticalScroller = YES;
+//	self.hasHorizontalScroller = NO;
+//	self.autohidesScrollers = NO;
 	
-	((UIView*)self.documentView).autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+//	((UIView*)self.contentView).autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
 }
 
 - (id)initWithFrame:(NSRect)frameRect {
@@ -107,7 +107,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	
 
 	if(height == 0) height = 1.0f;
-	self.documentSize = NSMakeSize([self contentSize].width, height);
+	self.contentSize = NSMakeSize([self contentSize].width, height);
 
 	[self clearAllCells];
 	[self layoutVisibleCells];
@@ -140,7 +140,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 
 - (void)layoutVisibleCells {
 	CGRect clipViewBounds = NSRectToCGRect(self.contentView.bounds);
-	NSArray* subviews = [[[self.documentView subviews] copy] autorelease];
+	NSArray* subviews = [[[self.contentView subviews] copy] autorelease];
 	
 	NSInteger section = 0;
 	for(NSDictionary* sectionInfo in _sectionData) {
@@ -186,7 +186,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 			aCell.frame = rowRect;
 			[aCell setNeedsLayout];
 			[aCell setNeedsDisplay];
-			[self.documentView addSubview:aCell];
+			[self.contentView addSubview:aCell];
 			[aCell layoutIfNeeded];
 			[_visibleCells addObject:aCell];
 
@@ -201,7 +201,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	[_visibleCells removeAllObjects];
 	
 	NSMutableSet* cells = [[NSMutableSet alloc] init];
-	for(UITableViewCell* cell in [self.documentView subviews]) {
+	for(UITableViewCell* cell in [self.contentView subviews]) {
 		if(![cell isKindOfClass:[UITableViewCell class]]) continue;
 		[cells addObject:cell];
 	}
@@ -218,7 +218,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	NSMutableSet* cellsToRemove = [NSMutableSet set];
 	CGRect clipViewBounds = NSRectToCGRect(self.contentView.bounds);
 	
-	for(UITableViewCell* cell in [self.documentView subviews]) {
+	for(UITableViewCell* cell in [self.contentView subviews]) {
 		if(![cell isKindOfClass:[UITableViewCell class]]) continue;
 		if(CGRectIntersectsRect(clipViewBounds, NSRectToCGRect(cell.frame))) continue;
 		[cellsToRemove addObject:cell];
@@ -232,33 +232,37 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	}
 }
 
-- (void)reflectScrolledClipView:(NSClipView *)aClipView{
-	[super reflectScrolledClipView:aClipView];
-	[self removeInvisibleCells];
-	[self layoutVisibleCells];
-}
-
 #pragma mark -
 #pragma mark Live resizing methods
-- (void)viewWillStartLiveResize {
-	[super viewWillStartLiveResize];
-	liveResizeScrollOffset = self.documentOffset;
-}
+//- (void)viewWillStartLiveResize {
+//	[super viewWillStartLiveResize];
+//	liveResizeScrollOffset = self.contentOffset;
+//}
+//
+//- (void)viewDidEndLiveResize {
+//	[super viewDidEndLiveResize];
+//	[self removeInvisibleCells];
+//	[self layoutVisibleCells];
+//}
 
-- (void)viewDidEndLiveResize {
-	[super viewDidEndLiveResize];
-	[self removeInvisibleCells];
-	[self layoutVisibleCells];
+#pragma mark -
+
+- (void)setContentOffset:(NSPoint)inContentOffset;
+{
+	[super setContentOffset:inContentOffset];
+	[self setNeedsLayout];
 }
 
 - (void)setFrame:(NSRect)frameRect {
 	[super setFrame:frameRect];
-	
-	if([self inLiveResize]) {
-		self.documentOffset = liveResizeScrollOffset;
-		[self removeInvisibleCells];
-		[self layoutVisibleCells];
-	}
+	[self setNeedsLayout];
+}
+
+- (void)layoutSubviews;
+{
+	[super layoutSubviews];
+	[self removeInvisibleCells];
+	[self layoutVisibleCells];
 }
 
 #pragma mark Todo

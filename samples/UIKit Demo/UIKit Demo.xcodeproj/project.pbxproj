@@ -129,7 +129,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				497B416E12F3A1E10051C59B /* QuartzCore.framework */,
 			);
 			name = "UIKit Demo";
 			sourceTree = "<group>";
@@ -157,6 +156,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				497B416E12F3A1E10051C59B /* QuartzCore.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);

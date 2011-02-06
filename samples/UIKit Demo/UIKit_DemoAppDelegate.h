@@ -10,12 +10,10 @@
 
 @class UIWindow;
 
-@interface UIKit_DemoAppDelegate : NSObject {
+@interface UIKit_DemoAppDelegate : NSObject <UITableViewDelegate, UITableViewDataSource> {
     UIWindow *window;
 	
-	UIScrollView *scrollView;
+	UITableView *tableView;
 }
-
-- (IBAction)setBadge:(id)sender;
 
 @end

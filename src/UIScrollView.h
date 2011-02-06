@@ -12,6 +12,8 @@
 
 @interface UIScrollView : UIView {
 @private
+	CGSize _contentSize;
+	CGPoint _contentOffset;
 	UIView *contentView;
 	UIView *scroller;
 }

@@ -22,8 +22,8 @@
 	self = [super initWithFrame:frameRect];
 	if (!self) return nil;
 	
-	contentView = [[UIView alloc] initWithFrame:self.bounds];	
-	contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;	
+	contentView = [[UIView alloc] initWithFrame:self.bounds];
+	self.contentView.autoresizingMask = 0;
 	[super addSubview:contentView];
 
 	scroller = [[UIScrollKnob alloc] initWithScrollView:self];
@@ -49,44 +49,82 @@
 	};
 }
 
+- (void)setFrame:(CGRect)inFrame;
+{
+	[super setFrame:inFrame];
+	//Constrain contentOffset to be feasible
+	CGPoint contentOffset = self.contentOffset;
+	contentOffset.x = fminf(contentOffset.x, fmaxf(0.0f, _contentSize.width - self.bounds.size.width));
+	contentOffset.y = fminf(contentOffset.y, fmaxf(0.0f, _contentSize.height - self.bounds.size.height));
+	self.contentOffset = contentOffset;
+}
+
 - (void)layoutSubviews;
 {
 	[super layoutSubviews];
 	
+	
 	CGRect availableFrame = [self scrollerFrame];
+	
+	const CGFloat minimumHeight = 20.0f;
 	
 	CGFloat offset = self.contentOffset.y / self.contentSize.height;
 	CGFloat size = self.frame.size.height / self.contentSize.height;
+	if (size < 1.0f) {
+		scroller.alpha = 1.0f;
+	} else {
+		scroller.alpha = 0.0f;
+	}
 	size = fminf(fmaxf(0.0f, size), 1.0f);
 	
-	scroller.frame = (CGRect) {
+	CGRect scrollerFrame =  {
 		.origin.x = availableFrame.origin.x,
 		.origin.y = availableFrame.origin.y + offset * availableFrame.size.height,
 		.size.width = availableFrame.size.width,
-		.size.height = size * availableFrame.size.height,
+		.size.height = fmaxf(minimumHeight, size * availableFrame.size.height),
 	};
+	
+	//Fix scroller going off the end
+	if (scrollerFrame.origin.y + scrollerFrame.size.height > CGRectGetMaxY(availableFrame)) {
+		scrollerFrame.origin.y = CGRectGetMaxY(availableFrame) - scrollerFrame.size.height;
+	}
+	scroller.frame = scrollerFrame;
+	
+	CGRect bounds = self.bounds;
+	self.contentView.frame = (CGRect) {
+		.origin.x = 0,
+		.origin.y = 0,
+		.size.width = fmaxf(_contentSize.width, bounds.size.width),
+		.size.height = fmaxf(_contentSize.height, bounds.size.height),
+		
+	};
+	
+	contentView.bounds = (CGRect) {
+		.origin.x = self.contentOffset.x,
+		.origin.y = self.contentOffset.y,
+		.size.width = fmaxf(_contentSize.width, bounds.size.width),
+		.size.height = fmaxf(_contentSize.height, bounds.size.height),
+	};
+
 }
 
-- (void)setContentSize:(NSSize)aSize {
-	NSRect aRect = self.contentView.frame;
-	aRect.size = aSize;
-	self.contentView.frame = aRect;
+- (void)setContentSize:(NSSize)inSize {
+	_contentSize = inSize;
+	[self setNeedsLayout];
 }
 
 - (CGSize)contentSize;
 {
-	return contentView.bounds.size;
+	return _contentSize;
 }
 
 - (void)setContentOffset:(NSPoint)aPoint {
-	CGRect bounds = contentView.bounds;
-	bounds.origin = aPoint;
-	contentView.bounds = bounds;
+	_contentOffset = aPoint;
 	[self setNeedsLayout];
 }
 
 - (NSPoint)contentOffset {
-	return contentView.bounds.origin;
+	return _contentOffset;
 }
 
 - (void)addSubview:(UIView*)aView {

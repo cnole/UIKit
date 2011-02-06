@@ -143,6 +143,12 @@
 #pragma mark -
 #pragma mark Event Handling
 
+- (NSResponder *)nextResponder;
+{
+	//TODO: view controller support: return the view controller if we have one
+	return self.superview;
+}
+
 - (BOOL)isDescendantOfView:(UIView *)inView;
 {
 	UIView *parent = [self superview];
@@ -169,7 +175,7 @@
 - (UIView *)_hitTestHelper:(CGPoint)point inView:(UIView *)inView withEvent:(NSEvent *)event;
 {
 	for (UIView *subview in [[self subviews] reverseObjectEnumerator]) {
-		if (subview.userInteractionEnabled) {
+		if (subview.userInteractionEnabled && subview.alpha > 0.01f) {
 			CGPoint subviewPoint = [inView convertPoint:point toView:subview];
 			if ([subview pointInside:subviewPoint withEvent:event]) {
 				return [subview _hitTestHelper:point inView:inView withEvent:event];
@@ -209,10 +215,36 @@
 	layer.backgroundColor = [inBackgroundColor CGColor];
 }
 
-- (BOOL)pointInside:(CGPoint)inPoint;
+#pragma mark -
+
+- (BOOL)opaque;
 {
-	return CGRectContainsPoint([self bounds], inPoint);
+	return layer.opaque;
 }
+
+- (void)setOpaque:(BOOL)inOpaque;
+{
+	layer.opaque = inOpaque;
+}
+
+- (CGFloat)alpha;
+{
+	return layer.opacity;
+}
+
+- (void)setAlpha:(CGFloat)inAlpha;
+{
+	layer.opacity = inAlpha;
+}
+
+#pragma mark -
+#pragma mark Debug
+
+- (NSString *)description;
+{
+	return [[super description] stringByAppendingFormat:@"{frame:%@}", NSStringFromRect(NSRectFromCGRect(self.frame))];
+}
+
 @end
 
 

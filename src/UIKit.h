@@ -22,3 +22,5 @@
 #import <UIKit/UIImageView.h>
 #import <UIKit/UIImage.h>
 #import <UIKit/UIScrollView.h>
+#import <UIKit/UITableView.h>
+#import <UIKit/UITableViewCell.h>

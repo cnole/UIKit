@@ -47,6 +47,9 @@ typedef NSUInteger UIViewAutoresizing;
 - (void)addSubview:(UIView *)inSubview;
 - (void)removeFromSuperview;
 
+@property (nonatomic) CGFloat alpha;
+@property (nonatomic) BOOL opaque;
+
 - (void)drawRect:(CGRect)inRect;
 
 @property (nonatomic, readonly, copy) NSArray *subviews;

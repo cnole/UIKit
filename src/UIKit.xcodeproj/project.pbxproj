@@ -22,6 +22,11 @@
 		494908E512FD225E0035C367 /* CGRoundRect.c in Sources */ = {isa = PBXBuildFile; fileRef = 494908E312FD225E0035C367 /* CGRoundRect.c */; };
 		494908E612FD225E0035C367 /* CGRoundRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 494908E412FD225E0035C367 /* CGRoundRect.h */; };
 		494908E812FD23A70035C367 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494908E712FD23A70035C367 /* ApplicationServices.framework */; };
+		4949092412FE75200035C367 /* UITableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4949091F12FE750D0035C367 /* UITableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4949092512FE75200035C367 /* UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949092012FE750E0035C367 /* UITableView.m */; };
+		4949092612FE75200035C367 /* UITableViewCell-Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 4949092112FE75110035C367 /* UITableViewCell-Private.h */; };
+		4949092712FE75200035C367 /* UITableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4949092212FE75140035C367 /* UITableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4949092812FE75200035C367 /* UITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949092312FE751B0035C367 /* UITableViewCell.m */; };
 		497B404412F38FA10051C59B /* UINSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B404212F38FA10051C59B /* UINSWindow.h */; };
 		497B404512F38FA10051C59B /* UINSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B404312F38FA10051C59B /* UINSWindow.m */; };
 		497B41E712F3A6820051C59B /* UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B41E512F3A6820051C59B /* UIImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,6 +70,11 @@
 		494908E312FD225E0035C367 /* CGRoundRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CGRoundRect.c; sourceTree = "<group>"; };
 		494908E412FD225E0035C367 /* CGRoundRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGRoundRect.h; sourceTree = "<group>"; };
 		494908E712FD23A70035C367 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
+		4949091F12FE750D0035C367 /* UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableView.h; sourceTree = "<group>"; };
+		4949092012FE750E0035C367 /* UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableView.m; sourceTree = "<group>"; };
+		4949092112FE75110035C367 /* UITableViewCell-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell-Private.h"; sourceTree = "<group>"; };
+		4949092212FE75140035C367 /* UITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCell.h; sourceTree = "<group>"; };
+		4949092312FE751B0035C367 /* UITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCell.m; sourceTree = "<group>"; };
 		497B404212F38FA10051C59B /* UINSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINSWindow.h; sourceTree = "<group>"; };
 		497B404312F38FA10051C59B /* UINSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSWindow.m; sourceTree = "<group>"; };
 		497B41E512F3A6820051C59B /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
@@ -171,6 +181,11 @@
 				499267DC12F4E4DA0070F372 /* UIScrollView.m */,
 				499267E612F5E7C50070F372 /* UIScrollKnob.h */,
 				499267E712F5E7C50070F372 /* UIScrollKnob.m */,
+				4949091F12FE750D0035C367 /* UITableView.h */,
+				4949092012FE750E0035C367 /* UITableView.m */,
+				4949092112FE75110035C367 /* UITableViewCell-Private.h */,
+				4949092212FE75140035C367 /* UITableViewCell.h */,
+				4949092312FE751B0035C367 /* UITableViewCell.m */,
 				494908E412FD225E0035C367 /* CGRoundRect.h */,
 				494908E312FD225E0035C367 /* CGRoundRect.c */,
 			);
@@ -228,6 +243,9 @@
 				499267DD12F4E4DA0070F372 /* UIScrollView.h in Headers */,
 				499267E812F5E7C50070F372 /* UIScrollKnob.h in Headers */,
 				494908E612FD225E0035C367 /* CGRoundRect.h in Headers */,
+				4949092412FE75200035C367 /* UITableView.h in Headers */,
+				4949092612FE75200035C367 /* UITableViewCell-Private.h in Headers */,
+				4949092712FE75200035C367 /* UITableViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +326,8 @@
 				499267DE12F4E4DA0070F372 /* UIScrollView.m in Sources */,
 				499267E912F5E7C50070F372 /* UIScrollKnob.m in Sources */,
 				494908E512FD225E0035C367 /* CGRoundRect.c in Sources */,
+				4949092512FE75200035C367 /* UITableView.m in Sources */,
+				4949092812FE75200035C367 /* UITableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
