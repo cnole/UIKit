@@ -23,9 +23,11 @@ typedef NSUInteger UIViewAutoresizing;
 @class CALayer;
 @class UIColor;
 @class NSEvent;
+@class UIViewController;
 @interface UIView : NSResponder {
 @private
 	CALayer *layer;
+	UIViewController *viewDelegate;
 	//TODO: why don't other implementations have this, ie how do they retain the views?
 	NSMutableArray *subviews;
 	BOOL userInteractionEnabled;

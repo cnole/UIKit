@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "TweetListViewController.h"
+
 #import "MouseEventView.h"
 
 @implementation UIKit_DemoAppDelegate
@@ -35,37 +37,13 @@
 	
 	[window makeKeyAndVisible];
 	
+	rootViewController = [[TweetListViewController alloc] init];
+	
 	CGRect bounds = NSRectToCGRect([window frame]);
-	
-	
-	tableView = [[UITableView alloc] initWithFrame:bounds];
-	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-	tableView.backgroundColor = [UIColor brownColor];
-	tableView.contentSize = (CGSize) {.height = 1000.0f};
-	[window addSubview:tableView];
-	
-	tableView.dataSource = self;
-	tableView.delegate = self;
-	[tableView reloadData];
+	rootViewController.view.frame = bounds;
+	rootViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+	[window addSubview:rootViewController.view];
 			
-}
-
-- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
-{
-	return 10;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-	NSString *reuseIdentifier = @"Reuse";
-	UITableViewCell *cell = [inTableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-	if (!cell) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier] autorelease];
-	}
-	
-	cell.textLabel.text = [NSString stringWithFormat:@"Foo bar %d", indexPath.row];
-	
-	return cell;
 }
 
 

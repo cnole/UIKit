@@ -18,6 +18,7 @@
 #import <UIKit/UIResponder.h>
 #import <UIKit/UIText.h>
 #import <UIKit/UIView.h>
+#import <UIKit/UIViewController.h>
 #import <UIKit/UIWindow.h>
 #import <UIKit/UIImageView.h>
 #import <UIKit/UIImage.h>

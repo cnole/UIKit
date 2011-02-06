@@ -10,10 +10,10 @@
 
 @class UIWindow;
 
-@interface UIKit_DemoAppDelegate : NSObject <UITableViewDelegate, UITableViewDataSource> {
+@interface UIKit_DemoAppDelegate : NSObject {
     UIWindow *window;
 	
-	UITableView *tableView;
+	UIViewController *rootViewController;
 }
 
 @end

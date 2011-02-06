@@ -6,14 +6,18 @@
 //  Copyright 2011 Darknoon. All rights reserved.
 //
 
-#import "UIView.h"
-
 #import <UIKit/UIColor.h>
 #import <QuartzCore/QuartzCore.h>
+
+#import "UIView.h"
+#import "UIView-Private.h"
+#import "UIViewController.h"
+
 
 @implementation UIView
 
 @synthesize userInteractionEnabled;
+@synthesize viewDelegate;
 
 + (Class)layerClass;
 {
@@ -145,8 +149,7 @@
 
 - (NSResponder *)nextResponder;
 {
-	//TODO: view controller support: return the view controller if we have one
-	return self.superview;
+	return viewDelegate != nil ? viewDelegate : self.superview;
 }
 
 - (BOOL)isDescendantOfView:(UIView *)inView;
