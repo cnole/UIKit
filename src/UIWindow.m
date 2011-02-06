@@ -39,6 +39,8 @@
 	[nsWindow setDelegate:self];
 	[[nsWindow contentView] setLayer:self.layer];
 	[[nsWindow contentView] setWantsLayer:YES];
+	
+	self.layer.geometryFlipped = YES;
 
 	//cause the nswindow to resize
 	[self setFrame:aFrame];
@@ -69,7 +71,7 @@
 	[CATransaction commit];
 }
 
-- (void)sendEvent:(UIEvent *)event;
+- (void)sendEvent:(NSEvent *)event;
 {
 	[CATransaction begin];
 	[CATransaction setDisableActions:YES];
@@ -77,7 +79,9 @@
 	//If it's a mouse down event, find the responsible view
 	if ([event type] == NSLeftMouseDown) {
 		//NSAssert(!trackingView, @"Already tracking a view! How so??");
-		UIView *hitView = [self hitTest:NSPointToCGPoint([event locationInWindow]) withEvent:event];
+		CGPoint windowPoint = NSPointToCGPoint([event locationInWindow]);
+		windowPoint = [self convertPoint:windowPoint fromView:nil];
+		UIView *hitView = [self hitTest:windowPoint withEvent:event];
 		self.trackingView = hitView;
 		if (hitView) {
 			[trackingView mouseDown:event];

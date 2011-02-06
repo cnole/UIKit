@@ -12,7 +12,6 @@
 
 #import <UIKit/UIApplication.h>
 #import <UIKit/UIColor.h>
-#import <UIKit/UIEvent.h>
 #import <UIKit/UIFont.h>
 #import <UIKit/UIGraphics.h>
 #import <UIKit/UILabel.h>

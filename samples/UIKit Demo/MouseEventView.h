@@ -12,7 +12,7 @@
 	BOOL selected;
 }
 
-- (void)mouseDown:(UIEvent *)inEvent;
-- (void)mouseUp:(UIEvent *)inEvent;
+- (void)mouseDown:(NSEvent *)inEvent;
+- (void)mouseUp:(NSEvent *)inEvent;
 
 @end

@@ -22,7 +22,7 @@ typedef NSUInteger UIViewAutoresizing;
 
 @class CALayer;
 @class UIColor;
-@class UIEvent;
+@class NSEvent;
 @interface UIView : NSResponder {
 @private
 	CALayer *layer;
@@ -51,8 +51,12 @@ typedef NSUInteger UIViewAutoresizing;
 
 @property (nonatomic, readonly, copy) NSArray *subviews;
 
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;
+- (UIView *)hitTest:(CGPoint)point withEvent:(NSEvent *)event;
+- (BOOL)pointInside:(CGPoint)point withEvent:(NSEvent *)event;
+
+- (CGPoint)convertPoint:(CGPoint)point fromView:(UIView *)inView;
+- (CGPoint)convertPoint:(CGPoint)point toView:(UIView *)inView;
+
 
 @property(nonatomic) CGRect            frame;
 

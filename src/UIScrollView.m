@@ -95,7 +95,9 @@
 
 - (void)_scrollerScrolled:(UIScrollKnob *)inScrollKnob withEvent:(NSEvent *)inEvent;
 {
-	CGFloat dy = [inEvent deltaY];
+	//dy is backwards because of coordinate flipping. Do we care?
+	CGFloat dy = -[inEvent deltaY];
+	
 	CGRect scrollerRect = [self scrollerFrame];
 	CGPoint contentOffset = self.contentOffset;
 	contentOffset.y -= (dy / scrollerRect.size.height) * self.contentSize.height;

@@ -121,7 +121,7 @@ static UIApplication *sharedApplication = nil;
 	return [uiWindows autorelease];
 }
 
-- (void)sendEvent:(UIEvent *)event {
+- (void)sendEvent:(NSEvent *)event {
 	[[NSApplication sharedApplication] sendEvent:event];
 }
 

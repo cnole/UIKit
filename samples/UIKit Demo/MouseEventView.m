@@ -21,17 +21,17 @@
 }
 
 
-- (void)mouseDown:(UIEvent *)inEvent;
+- (void)mouseDown:(NSEvent *)inEvent;
 {
 	self.backgroundColor = [UIColor blueColor];
 }
 
-- (void)mouseUp:(UIEvent *)inEvent;
+- (void)mouseUp:(NSEvent *)inEvent;
 {
 	self.backgroundColor = [UIColor greenColor];
 }
 
-- (void)mouseDragged:(UIEvent *)inEvent;
+- (void)mouseDragged:(NSEvent *)inEvent;
 {
 	//TODO: blah
 	CGPoint dragToPoint;

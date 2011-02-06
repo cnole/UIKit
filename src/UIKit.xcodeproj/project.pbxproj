@@ -36,8 +36,6 @@
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		C3E48EC4112372A20061E0D8 /* UIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48EC2112372A20061E0D8 /* UIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E48EC5112372A20061E0D8 /* UIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E48EC3112372A20061E0D8 /* UIApplication.m */; };
-		C3E48ED3112373180061E0D8 /* UIEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48ED1112373180061E0D8 /* UIEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3E48ED4112373180061E0D8 /* UIEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E48ED2112373180061E0D8 /* UIEvent.m */; };
 		C3E48ED71123731E0061E0D8 /* UIResponder.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48ED51123731E0061E0D8 /* UIResponder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C3E48ED81123731E0061E0D8 /* UIResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E48ED61123731E0061E0D8 /* UIResponder.m */; };
 		C3E48EDB112373280061E0D8 /* UIWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = C3E48ED9112373280061E0D8 /* UIWindow.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,9 +56,9 @@
 		2809343F1013A99F00AE0F9A /* UIFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFont.h; sourceTree = "<group>"; };
 		280934401013A99F00AE0F9A /* UIFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIFont.m; sourceTree = "<group>"; };
 		280A6E3B1083B56E00D056F0 /* UIText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIText.h; sourceTree = "<group>"; };
-		284CBB3A0FAA51AA007DBD91 /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView.h; sourceTree = "<group>"; };
-		284CBB3B0FAA51AA007DBD91 /* UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIView.m; sourceTree = "<group>"; };
-		284CBB4D0FAA5201007DBD91 /* UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKit.h; sourceTree = "<group>"; };
+		284CBB3A0FAA51AA007DBD91 /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = UIView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		284CBB3B0FAA51AA007DBD91 /* UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		284CBB4D0FAA5201007DBD91 /* UIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = UIKit.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		284CBB520FAA523F007DBD91 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitDefines.h; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* UIKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKit_Prefix.pch; sourceTree = "<group>"; };
@@ -79,10 +77,8 @@
 		499267E712F5E7C50070F372 /* UIScrollKnob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollKnob.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* UIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3E48EC2112372A20061E0D8 /* UIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIApplication.h; sourceTree = "<group>"; };
-		C3E48EC3112372A20061E0D8 /* UIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIApplication.m; sourceTree = "<group>"; };
-		C3E48ED1112373180061E0D8 /* UIEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEvent.h; sourceTree = "<group>"; };
-		C3E48ED2112373180061E0D8 /* UIEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEvent.m; sourceTree = "<group>"; };
+		C3E48EC2112372A20061E0D8 /* UIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = UIApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		C3E48EC3112372A20061E0D8 /* UIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C3E48ED51123731E0061E0D8 /* UIResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIResponder.h; sourceTree = "<group>"; };
 		C3E48ED61123731E0061E0D8 /* UIResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIResponder.m; sourceTree = "<group>"; };
 		C3E48ED9112373280061E0D8 /* UIWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWindow.h; sourceTree = "<group>"; };
@@ -151,8 +147,6 @@
 				C3E48EC3112372A20061E0D8 /* UIApplication.m */,
 				28092F9E1013793B00AE0F9A /* UIColor.h */,
 				28092F9F1013793B00AE0F9A /* UIColor.m */,
-				C3E48ED1112373180061E0D8 /* UIEvent.h */,
-				C3E48ED2112373180061E0D8 /* UIEvent.m */,
 				2809343F1013A99F00AE0F9A /* UIFont.h */,
 				280934401013A99F00AE0F9A /* UIFont.m */,
 				C3FA254E11237D87007F0E75 /* UIGraphics.h */,
@@ -225,7 +219,6 @@
 				280934411013A99F00AE0F9A /* UIFont.h in Headers */,
 				280A6E3D1083B56E00D056F0 /* UIText.h in Headers */,
 				C3E48EC4112372A20061E0D8 /* UIApplication.h in Headers */,
-				C3E48ED3112373180061E0D8 /* UIEvent.h in Headers */,
 				C3E48ED71123731E0061E0D8 /* UIResponder.h in Headers */,
 				C3E48EDB112373280061E0D8 /* UIWindow.h in Headers */,
 				C3FA255011237D87007F0E75 /* UIGraphics.h in Headers */,
@@ -306,7 +299,6 @@
 				28092FA11013793B00AE0F9A /* UIColor.m in Sources */,
 				280934421013A99F00AE0F9A /* UIFont.m in Sources */,
 				C3E48EC5112372A20061E0D8 /* UIApplication.m in Sources */,
-				C3E48ED4112373180061E0D8 /* UIEvent.m in Sources */,
 				C3E48ED81123731E0061E0D8 /* UIResponder.m in Sources */,
 				C3E48EDC112373280061E0D8 /* UIWindow.m in Sources */,
 				C3FA255111237D87007F0E75 /* UIGraphics.m in Sources */,

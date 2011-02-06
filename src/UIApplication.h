@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 #import <UIKit/UIKitDefines.h>
-#import <UIKit/UIEvent.h>
 #import <UIKit/UIResponder.h>
 
 @class UIView, UIWindow;
@@ -46,7 +45,7 @@ UIKIT_EXTERN_CLASS @interface UIApplication : UIResponder <NSApplicationDelegate
 - (BOOL)openURL:(NSURL*)url;
 - (BOOL)canOpenURL:(NSURL *)url;
 
-- (void)sendEvent:(UIEvent *)event;
+- (void)sendEvent:(NSEvent *)event;
 
 @property(nonatomic,readonly) UIWindow *keyWindow;
 @property(nonatomic,readonly) NSArray  *windows;

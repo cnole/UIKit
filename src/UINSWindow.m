@@ -8,7 +8,6 @@
 
 #import "UINSWindow.h"
 
-
 @implementation UINSWindow
 
 - (id)initWithUIWindow:(UIWindow *)inWindow type:(UINSWindowType)inWindowType;
@@ -17,7 +16,7 @@
 							styleMask:(NSTitledWindowMask | NSClosableWindowMask | NSMiniaturizableWindowMask | NSResizableWindowMask) 
 							  backing:NSBackingStoreBuffered defer:YES];
 	if (!self) return nil;
-	
+		
 	uiWindow = inWindow;
 	
 	return self;
