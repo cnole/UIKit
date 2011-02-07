@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad;
 {
-	searchString = @"UIKit";
+	searchString = @"#ABUIKit";
 	
 	self.view.backgroundColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
 	
