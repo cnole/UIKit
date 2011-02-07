@@ -9,6 +9,7 @@
 #import "UIScrollView.h"
 #import "UIColor.h"
 #import "UIScrollKnob.h"
+#import "UIView.h"
 
 #import <QuartzCore/QuartzCore.h>
 

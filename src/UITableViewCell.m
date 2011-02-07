@@ -23,14 +23,14 @@
 @synthesize indentationWidth=_indentationWidth, editing=_editing, showingDeleteConfirmation=_showingDeleteConfirmation;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-	if(self = [self initWithFrame:NSMakeRect(0.0f, 0.0f, 320.0f, 44.0f) reuseIdentifier:reuseIdentifier]) {
+	if((self = [self initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f) reuseIdentifier:reuseIdentifier])) {
 		
 	}
 	
 	return self;
 }
 
-- (id)initWithFrame:(NSRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
 	if((self = [super initWithFrame:frame])) {
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor whiteColor];
@@ -89,10 +89,7 @@
 	[self setNeedsDisplay];
 }
 
-- (void)drawRect:(NSRect)rect {
-	NSGradient *grad = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithDeviceRed:5/255 green:140/255 blue:245/255 alpha:1.0] endingColor:[NSColor colorWithDeviceRed:1/255 green:93/255 blue:230/255 alpha:1.0]];
-	[grad drawInRect:rect angle:90];
-	[grad release];
+- (void)drawRect:(CGRect)rect {
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated {

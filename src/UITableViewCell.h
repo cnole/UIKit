@@ -169,7 +169,7 @@ UIKIT_EXTERN_CLASS @interface UITableViewCell : UIView {
 @interface UITableViewCell (UIDeprecated)
 
 // Frame is ignored.  The size will be specified by the table view width and row height.
-- (id)initWithFrame:(NSRect)frame reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier;
 
 // Content properties.  These properties were deprecated in iPhone OS 3.0.  The textLabel and imageView properties above should be used instead.
 // For selected attributes, set the highlighted attributes on the textLabel and imageView.

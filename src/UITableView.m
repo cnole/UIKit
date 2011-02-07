@@ -107,7 +107,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 	
 
 	if(height == 0) height = 1.0f;
-	self.contentSize = NSMakeSize([self contentSize].width, height);
+	self.contentSize = CGSizeMake([self contentSize].width, height);
 
 	[self clearAllCells];
 	[self layoutVisibleCells];
@@ -139,7 +139,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 }
 
 - (void)layoutVisibleCells {
-	CGRect clipViewBounds = NSRectToCGRect(self.contentView.bounds);
+	CGRect clipViewBounds = self.contentView.bounds;
 	NSArray* subviews = [[[self.contentView subviews] copy] autorelease];
 	
 	NSInteger section = 0;
@@ -167,7 +167,7 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 			BOOL skip = NO;
 			for(UIView* view in subviews) {
 				if(![view isKindOfClass:[UITableViewCell class]]) continue;
-				if(CGRectIntersectsRect(NSRectToCGRect(rowRect), NSRectToCGRect(view.frame))) {
+				if(CGRectIntersectsRect(NSRectToCGRect(rowRect), view.frame)) {
 					skip = YES;
 					break;
 				}
@@ -216,11 +216,11 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 
 - (void)removeInvisibleCells {
 	NSMutableSet* cellsToRemove = [NSMutableSet set];
-	CGRect clipViewBounds = NSRectToCGRect(self.contentView.bounds);
+	CGRect clipViewBounds = self.contentView.bounds;
 	
 	for(UITableViewCell* cell in [self.contentView subviews]) {
 		if(![cell isKindOfClass:[UITableViewCell class]]) continue;
-		if(CGRectIntersectsRect(clipViewBounds, NSRectToCGRect(cell.frame))) continue;
+		if(CGRectIntersectsRect(clipViewBounds, cell.frame)) continue;
 		[cellsToRemove addObject:cell];
 	}
 	
@@ -247,13 +247,13 @@ static inline CGRect CGRectFromOffsetHeight(float offset, float height) {
 
 #pragma mark -
 
-- (void)setContentOffset:(NSPoint)inContentOffset;
+- (void)setContentOffset:(CGPoint)inContentOffset;
 {
 	[super setContentOffset:inContentOffset];
 	[self setNeedsLayout];
 }
 
-- (void)setFrame:(NSRect)frameRect {
+- (void)setFrame:(CGRect)frameRect {
 	[super setFrame:frameRect];
 	[self setNeedsLayout];
 }

@@ -29,7 +29,7 @@
 	[super dealloc];
 }
 
-- (id)initWithFrame:(NSRect)aFrame {
+- (id)initWithFrame:(CGRect)aFrame {
 	self = [super initWithFrame:aFrame];
 	
 	self.backgroundColor = [UIColor whiteColor];
@@ -53,7 +53,7 @@
 	[super setFrame:(CGRect) {
 		.size = inFrame.size
 	}];
-	[nsWindow setFrame:inFrame display:YES animate:YES];
+	[nsWindow setFrame:NSRectFromCGRect(inFrame) display:YES animate:YES];
 }
 
 - (CGRect)frame;
