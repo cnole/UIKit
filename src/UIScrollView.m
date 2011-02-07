@@ -42,10 +42,10 @@
 {
 	CGRect bounds = self.bounds;
 	return (CGRect) {
-		.origin.x = bounds.size.width - 10.f,
+		.origin.x = bounds.size.width - 14.f,
 		.origin.y = 5.f,
 		.size.height = bounds.size.height - 10.f,
-		.size.width = 10.f,
+		.size.width = 14.f,
 	};
 }
 

@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface MouseEventView : UIView {
-	BOOL selected;
+	UIImageView *imageView;
+	BOOL highlighted;	
 }
+
+@property (nonatomic, assign) id target;
+@property (nonatomic) SEL action;
 
 - (void)mouseDown:(NSEvent *)inEvent;
 - (void)mouseUp:(NSEvent *)inEvent;

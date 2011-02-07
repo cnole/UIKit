@@ -19,6 +19,8 @@
 		49824D9312FF6B4800CDBA62 /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49824D9112FF6B4800CDBA62 /* NSDictionary_JSONExtensions.m */; };
 		49824D9512FF6B6700CDBA62 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 49824D9412FF6B6700CDBA62 /* libz.dylib */; };
 		49824D9912FF6B8C00CDBA62 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49824D9812FF6B8C00CDBA62 /* SystemConfiguration.framework */; };
+		49824D9D12FF75D100CDBA62 /* ButtonHighlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 49824D9B12FF75D100CDBA62 /* ButtonHighlight.png */; };
+		49824D9E12FF75D100CDBA62 /* ButtonNormal.png in Resources */ = {isa = PBXBuildFile; fileRef = 49824D9C12FF75D100CDBA62 /* ButtonNormal.png */; };
 		49AEA3F712FF630D003664DA /* TweetListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AEA3F612FF630D003664DA /* TweetListViewController.m */; };
 		49AEA40D12FF699C003664DA /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AEA3FB12FF699C003664DA /* ASIDataCompressor.m */; };
 		49AEA40E12FF699C003664DA /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AEA3FD12FF699C003664DA /* ASIDataDecompressor.m */; };
@@ -95,6 +97,8 @@
 		49824D9412FF6B6700CDBA62 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		49824D9612FF6B7A00CDBA62 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		49824D9812FF6B8C00CDBA62 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		49824D9B12FF75D100CDBA62 /* ButtonHighlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonHighlight.png; sourceTree = "<group>"; };
+		49824D9C12FF75D100CDBA62 /* ButtonNormal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonNormal.png; sourceTree = "<group>"; };
 		49AEA3F512FF630D003664DA /* TweetListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetListViewController.h; sourceTree = "<group>"; };
 		49AEA3F612FF630D003664DA /* TweetListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetListViewController.m; sourceTree = "<group>"; };
 		49AEA3FA12FF699C003664DA /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 				49824D9412FF6B6700CDBA62 /* libz.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				49AEA3F812FF699C003664DA /* Externals */,
+				49824D9A12FF75D100CDBA62 /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -254,6 +259,15 @@
 				49824D9112FF6B4800CDBA62 /* NSDictionary_JSONExtensions.m */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		49824D9A12FF75D100CDBA62 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49824D9B12FF75D100CDBA62 /* ButtonHighlight.png */,
+				49824D9C12FF75D100CDBA62 /* ButtonNormal.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		49AEA3F812FF699C003664DA /* Externals */ = {
@@ -368,6 +382,8 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				49824D9D12FF75D100CDBA62 /* ButtonHighlight.png in Resources */,
+				49824D9E12FF75D100CDBA62 /* ButtonNormal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

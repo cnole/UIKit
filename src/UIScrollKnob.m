@@ -27,9 +27,9 @@
 {
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	
-	[[UIColor blueColor] set];
+	[[UIColor colorWithWhite:0.0f alpha:0.5f] set];
 	CGContextBeginPath(ctx);
-	CGContextAddRoundRect(ctx, inRect, inRect.size.width / 2.0f);
+	CGContextAddRoundRect(ctx, CGRectInset(inRect, 2.f, 2.f), inRect.size.width / 2.0f - 2.f);
 	CGContextFillPath(ctx);
 }
 

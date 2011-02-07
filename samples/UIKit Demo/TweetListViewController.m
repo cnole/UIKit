@@ -8,20 +8,44 @@
 
 #import "TweetListViewController.h"
 
+#import "MouseEventView.h"
+
 #import "ASIHTTPRequest.h"
 #import "CJSONDeserializer.h"
 
 @interface TweetListViewController ()
 @property (nonatomic, copy) NSArray *tweets;
 - (void)executeSearchForQuery:(NSString *)inQuery;
+- (void)refresh;
 @end
 
 @implementation TweetListViewController
 @synthesize tweets;
 
+- (void)dealloc {
+    [tableView release];
+    [super dealloc];
+}
+
+
 - (void)viewDidLoad;
 {
-	tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+	searchString = @"UIKit";
+	
+	self.view.backgroundColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+	
+	//Use this to set up views, which will be autoresized later
+	self.view.frame = (CGRect) {
+		.size.height = 400.f,
+		.size.width = 400.f,
+	};
+	
+	tableView = [[UITableView alloc] initWithFrame:(CGRect) {
+		.origin.y = 50.f,
+		.size.height = 350.f,
+		.size.width = 400.f,
+	}];
+	tableView.layer.masksToBounds = YES;
 	tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	tableView.backgroundColor = [UIColor brownColor];
 	tableView.contentSize = (CGSize) {.height = 1000.0f};
@@ -32,8 +56,28 @@
 	tableView.delegate = self;
 	[tableView reloadData];
 	
-	[self executeSearchForQuery:@"UIKit"];
-
+	MouseEventView * mouseEventView = [[[MouseEventView alloc] initWithFrame:(CGRect) {
+		.origin.x = 400.f - 178.f,
+		.size.width = 178.f,
+		.size.height = 50.f,
+	}] autorelease];
+	mouseEventView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+	[mouseEventView setTarget:self];
+	[mouseEventView setAction:@selector(refresh)];
+	[self.view addSubview:mouseEventView];
+	
+	UILabel *descriptionLabel = [[[UILabel alloc] initWithFrame:(CGRect) {
+		.origin.x = 10.f,
+		.size.width = 200.f,
+		.size.height = 50.f,
+	}] autorelease];
+	[self.view addSubview:descriptionLabel];
+	descriptionLabel.text = [NSString stringWithFormat:@"Tweets about \"%@\"", searchString];
+	descriptionLabel.backgroundColor = [UIColor clearColor];
+	descriptionLabel.font = [UIFont fontWithName:@"Helvetica Neue Bold" size:18.f];
+	descriptionLabel.textColor = [UIColor whiteColor];
+	
+	[self refresh];
 }
 
 - (NSString*)encodeURL:(NSString *)string
@@ -44,9 +88,6 @@
 	}
 	return @"";
 }
-
-
-
 
 - (void)executeSearchForQuery:(NSString *)inQuery;
 {
@@ -73,9 +114,11 @@
 	
 }
 
-- (void)dealloc {
-    [tableView release];
-    [super dealloc];
+- (void)refresh;
+{
+	[self executeSearchForQuery:searchString];
+	self.tweets = nil;
+	[tableView reloadData];
 }
 
 

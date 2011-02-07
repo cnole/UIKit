@@ -11,6 +11,8 @@
 @interface TweetListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     UITableView *tableView;
 	
+	NSString *searchString;
+	
 	NSArray *tweets;
 }
 
