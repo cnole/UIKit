@@ -18,7 +18,7 @@
 - (void)setupScrollViewDefaults {
 }
 
-- (id)initWithFrame:(NSRect)frameRect {
+- (id)initWithFrame:(CGRect)frameRect {
 	self = [super initWithFrame:frameRect];
 	if (!self) return nil;
 	
@@ -111,13 +111,12 @@
 - (void)scrollWheel:(NSEvent *)inEvent;
 {
 	CGPoint contentOffset = _contentOffset;
-//	contentOffset.x += 10.0f * [inEvent deltaX];
 	contentOffset.y -= 8.0f * [inEvent deltaY];
 	self.contentOffset = contentOffset;
 	
 }
 
-- (void)setContentSize:(NSSize)inSize {
+- (void)setContentSize:(CGSize)inSize {
 	_contentSize = inSize;
 	[self setNeedsLayout];
 }
@@ -127,12 +126,12 @@
 	return _contentSize;
 }
 
-- (void)setContentOffset:(NSPoint)aPoint {
+- (void)setContentOffset:(CGPoint)aPoint {
 	_contentOffset = aPoint;
 	[self setNeedsLayout];
 }
 
-- (NSPoint)contentOffset {
+- (CGPoint)contentOffset {
 	return _contentOffset;
 }
 

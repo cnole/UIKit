@@ -18,8 +18,8 @@
 	UIView *scroller;
 }
 
-@property(nonatomic,assign) NSSize contentSize; // contentOffset on iPhone
-@property(nonatomic,assign) NSPoint contentOffset; // contentOffset on iPhone
+@property(nonatomic,assign) CGSize contentSize;
+@property(nonatomic,assign) CGPoint contentOffset;
 
 @property (nonatomic, readonly, retain) UIView *contentView;
 
