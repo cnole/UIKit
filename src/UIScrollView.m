@@ -112,6 +112,9 @@
 {
 	CGPoint contentOffset = _contentOffset;
 	contentOffset.y -= 8.0f * [inEvent deltaY];
+	
+	contentOffset.y = floorf(fmaxf(0.0f, fminf(contentOffset.y, self.contentSize.height - self.frame.size.height)));
+	
 	self.contentOffset = contentOffset;
 	
 }
@@ -147,7 +150,7 @@
 	CGRect scrollerRect = [self scrollerFrame];
 	CGPoint contentOffset = self.contentOffset;
 	contentOffset.y -= (dy / scrollerRect.size.height) * self.contentSize.height;
-	contentOffset.y = fmaxf(0.0f, fminf(contentOffset.y, self.contentSize.height - self.frame.size.height));
+	contentOffset.y = floorf(fmaxf(0.0f, fminf(contentOffset.y, self.contentSize.height - self.frame.size.height)));
 	self.contentOffset = contentOffset;
 }
 
