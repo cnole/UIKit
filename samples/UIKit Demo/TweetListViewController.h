@@ -10,6 +10,8 @@
 
 @interface TweetListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
     UITableView *tableView;
+	
+	NSArray *tweets;
 }
 
 @end
