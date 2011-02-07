@@ -13,7 +13,6 @@
 #import "UIView-Private.h"
 #import "UIViewController.h"
 
-
 @implementation UIView
 
 @synthesize userInteractionEnabled;
@@ -82,16 +81,17 @@
 
 - (void)addSubview:(UIView *)inSubview;
 {
+	//TODO: do this better
 	[subviews addObject:inSubview];
 	[layer addSublayer:inSubview.layer];
+	[inSubview _updateNextResponder];
 }
 
 - (UIView *)superview;
 {
 	UIView *superview = [layer superlayer].delegate;
 	NSAssert1(!superview || [superview isKindOfClass:[UIView class]], @"Bad superview (superlayer delegate) of type: %@!", superview);
-	return superview;
-	
+	return superview;	
 }
 
 - (void)removeFromSuperview;
@@ -102,11 +102,27 @@
 		[superview->subviews removeObject:self];
 	}
 	[layer removeFromSuperlayer];
+	[self _updateNextResponder];
 }
 
 - (NSArray *)subviews;
 {
 	return [[subviews copy] autorelease];
+}
+
+- (void)setViewDelegate:(UIViewController *)inViewController;
+{
+	viewDelegate = inViewController;
+	[self _updateNextResponder];
+}
+
+- (void)_updateNextResponder;
+{
+	if (viewDelegate) {
+		[self setNextResponder:viewDelegate];
+	} else {
+		[self setNextResponder:self.superview];
+	}
 }
 
 #pragma mark -
@@ -147,11 +163,6 @@
 #pragma mark -
 #pragma mark Event Handling
 
-- (NSResponder *)nextResponder;
-{
-	return viewDelegate != nil ? viewDelegate : self.superview;
-}
-
 - (BOOL)isDescendantOfView:(UIView *)inView;
 {
 	UIView *parent = [self superview];
@@ -171,28 +182,19 @@
 	return [self.layer convertPoint:point toLayer:inView.layer];
 }
 
-
-//Assumes self contains point if converted to our coords
-//Return the recursive result of this method called on the last subview that contains point
-//If no subview contains the point, return self
-- (UIView *)_hitTestHelper:(CGPoint)point inView:(UIView *)inView withEvent:(NSEvent *)event;
-{
-	for (UIView *subview in [[self subviews] reverseObjectEnumerator]) {
-		if (subview.userInteractionEnabled && subview.alpha > 0.01f) {
-			CGPoint subviewPoint = [inView convertPoint:point toView:subview];
-			if ([subview pointInside:subviewPoint withEvent:event]) {
-				return [subview _hitTestHelper:point inView:inView withEvent:event];
-			}
-		}
-	}
-	return self;
-}
-
-
 - (UIView *)hitTest:(CGPoint)point withEvent:(NSEvent *)event;
 {
 	if ([self pointInside:point withEvent:event]) {
-		return [self _hitTestHelper:point inView:self withEvent:event];
+		for (UIView *subview in [[self subviews] reverseObjectEnumerator]) {
+			if (subview.userInteractionEnabled && subview.alpha > 0.01f) {
+				CGPoint subviewPoint = [self convertPoint:point toView:subview];
+				UIView *foundView = [subview hitTest:subviewPoint withEvent:event];
+				if (foundView) {
+					return foundView;
+				}
+			}
+		}
+		return self;
 	} else {
 		return nil;
 	}

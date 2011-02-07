@@ -63,11 +63,7 @@
 	[view release];
 	view = [inView retain];
 	view.viewDelegate = self;
-}
-
-- (NSResponder *)nextResponder;
-{
-	return view.superview;
+	[self setNextResponder:view.superview];
 }
 
 @end

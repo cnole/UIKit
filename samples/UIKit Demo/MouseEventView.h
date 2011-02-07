@@ -16,7 +16,4 @@
 @property (nonatomic, assign) id target;
 @property (nonatomic) SEL action;
 
-- (void)mouseDown:(NSEvent *)inEvent;
-- (void)mouseUp:(NSEvent *)inEvent;
-
 @end

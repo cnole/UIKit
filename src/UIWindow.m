@@ -61,43 +61,36 @@
 	return NSRectToCGRect([nsWindow contentRectForFrameRect:[nsWindow frame]]);
 }
 
-- (void)windowDidResize:(NSNotification *)notification
+- (UIView *)hitTestFromEvent:(NSEvent *)inEvent;
 {
-	[CATransaction begin];
-	[CATransaction setDisableActions:YES];
-	[self.layer setFrame:(CGRect) {
-		.size = [nsWindow frame].size
-	}];
-	[CATransaction commit];
+	CGPoint windowPoint = NSPointToCGPoint([inEvent locationInWindow]);
+	windowPoint = [self convertPoint:windowPoint fromView:nil];
+	return [self hitTest:windowPoint withEvent:inEvent];
+
 }
 
-- (void)sendEvent:(NSEvent *)event;
+- (void)sendEvent:(NSEvent *)inEvent;
 {
-	[CATransaction begin];
-	[CATransaction setDisableActions:YES];
-
 	//If it's a mouse down event, find the responsible view
-	if ([event type] == NSLeftMouseDown) {
+	if ([inEvent type] == NSLeftMouseDown) {
 		//NSAssert(!trackingView, @"Already tracking a view! How so??");
-		CGPoint windowPoint = NSPointToCGPoint([event locationInWindow]);
-		windowPoint = [self convertPoint:windowPoint fromView:nil];
-		UIView *hitView = [self hitTest:windowPoint withEvent:event];
-		self.trackingView = hitView;
-		if (hitView) {
-			[trackingView mouseDown:event];
-		}
-	} else if ([event type] == NSLeftMouseUp) {
+		self.trackingView = [self hitTestFromEvent:inEvent];
 		if (trackingView) {
-			[trackingView mouseUp:event];
+			[trackingView mouseDown:inEvent];
+		}
+	} else if ([inEvent type] == NSLeftMouseUp) {
+		if (trackingView) {
+			[trackingView mouseUp:inEvent];
 		}
 		self.trackingView = nil;
-	} else if ([event type] == NSLeftMouseDragged) {
+	} else if ([inEvent type] == NSLeftMouseDragged) {
 		if (trackingView) {
-			[trackingView mouseDragged:event];
+			[trackingView mouseDragged:inEvent];
 		}
+	} else if ([inEvent type] == NSScrollWheel) {
+		UIView *scrollView = [self hitTestFromEvent:inEvent];
+		[scrollView scrollWheel:inEvent];
 	}
-	[CATransaction commit];
-
 }
 
 - (void)makeKeyAndVisible;

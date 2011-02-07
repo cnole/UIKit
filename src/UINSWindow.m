@@ -24,9 +24,7 @@
 
 - (void)sendEvent:(NSEvent *)inEvent;
 {
-	//TODO: fix me
 	[uiWindow sendEvent:inEvent];
-	[super sendEvent:inEvent];
 }
 
 @end

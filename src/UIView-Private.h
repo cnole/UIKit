@@ -8,4 +8,5 @@
 
 @interface UIView ()
 @property (nonatomic, assign) UIViewController *viewDelegate;
+- (void)_updateNextResponder;
 @end
