@@ -124,7 +124,7 @@
 
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section;
 {
-	return tweets.count;
+	return MAX(tweets.count, 12);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)inTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -137,8 +137,15 @@
 		cell.textLabel.font = [NSFont fontWithName:@"Helvetica Neue Bold" size:14];
 	}
 	
-	NSDictionary *tweet = [tweets objectAtIndex:indexPath.row];
-	cell.textLabel.text = [tweet objectForKey:@"text"];
+	NSString *tweetText = nil;
+	if (indexPath.row < tweets.count) {
+		NSDictionary *tweet = [tweets objectAtIndex:indexPath.row];
+		tweetText = [tweet objectForKey:@"text"];
+	} else {
+		tweetText = @"Tweet with the #ABUIKit tag to fill in this list...";
+	}
+	
+	cell.textLabel.text = tweetText;
 	
 	return cell;
 }
