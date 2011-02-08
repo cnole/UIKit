@@ -21,7 +21,7 @@
 }
 
 - (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+    if ((self = [super initWithFrame:frame])) {
 		self.textColor = [UIColor blackColor];
 		self.font = [NSFont systemFontOfSize:17.0f];
 		self.textAlignment = UITextAlignmentLeft;
