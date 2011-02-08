@@ -23,6 +23,11 @@
 	return self;
 }
 
+- (id)initWithImage:(UIImage *)inImage;
+{
+	return [self initWithFrame:(CGRect) {.size = inImage.size}];
+}
+
 - (void)setImage:(UIImage *)inImage;
 {
 	[image autorelease];

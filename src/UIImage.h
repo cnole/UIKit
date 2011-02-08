@@ -14,6 +14,7 @@
 }
 
 + (UIImage *)imageNamed:(NSString *)name;
++ (UIImage *)imageWithData:(NSData *)inData;
 
 
 - (CGImageRef)CGImage;
@@ -21,6 +22,8 @@
 - (id)initWithData:(NSData *)inData;
 - (id)initWithCGImage:(CGImageRef)inCGImage;
 - (id)initWithContentsOfFile:(NSString *)inPath;
+
+@property(nonatomic,readonly) CGSize size;
 
 @end
 

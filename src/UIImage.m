@@ -14,8 +14,20 @@
 + (UIImage *)imageNamed:(NSString *)name;
 {
 	NSString *path = [[NSBundle mainBundle] pathForImageResource:name];
-	if (!path) return nil;
+	if (!path) {
+		[self release];
+		return nil;
+	}
 	return [[[self class] alloc] initWithContentsOfFile:path];
+}
+
++ (UIImage *)imageWithData:(NSData *)inData;
+{
+	if (!inData) {
+		[self release];
+		return nil;
+	}
+	return [[[self class] alloc] initWithData:inData];
 }
 
 - (id)initWithNSImage:(NSImage *)inImage;
@@ -62,6 +74,14 @@
 - (CGImageRef)CGImage;
 {
 	return (CGImageRef)[[(id)cgImage retain] autorelease];
+}
+
+- (CGSize)size;
+{
+	return (CGSize) {
+		.width = CGImageGetWidth(cgImage),
+		.height = CGImageGetHeight(cgImage),
+	};
 }
 
 @end

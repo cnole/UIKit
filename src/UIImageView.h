@@ -15,4 +15,7 @@
 
 @property (nonatomic, retain) UIImage *image;
 
+- (id)initWithImage:(UIImage *)inImage;
+
+
 @end
