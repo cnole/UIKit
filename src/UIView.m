@@ -49,6 +49,7 @@
 
 - (void) dealloc
 {
+	layer.delegate = nil;
 	[layer release];
 
 	[super dealloc];
@@ -250,6 +251,12 @@
 	return [[super description] stringByAppendingFormat:@"{frame:%@}", NSStringFromRect(NSRectFromCGRect(self.frame))];
 }
 
+
+- (void)drawRect:(CGRect)inRect;
+{
+	//Override point 
+	//TODO: make this more efficent when not implemented by subclasses!
+}
 @end
 
 
@@ -258,13 +265,15 @@
 
 - (void)layoutSublayersOfLayer:(CALayer *)inLayer;
 {
-	NSAssert(inLayer == layer, @"Not the layer we were expecting");
+	NSAssert2(inLayer == layer, @"layoutSublayersOfLayer: (%@) is not the layer we were expecting (%@).", inLayer, layer);
 	
 	[self layoutSubviews];
 }
 
-- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
+- (void)drawLayer:(CALayer *)inLayer inContext:(CGContextRef)ctx;
 {
+	NSAssert2(inLayer == layer, @"drawLayer:inContext: (%@) is not the layer we were expecting (%@).", inLayer, layer);
+
 	UIGraphicsPushContext(ctx);
 	if ([self respondsToSelector:@selector(drawRect:)]) {
 		[self drawRect:self.bounds];
