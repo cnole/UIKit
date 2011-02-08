@@ -18,19 +18,22 @@
 	return [[[self class] alloc] initWithContentsOfFile:path];
 }
 
-
-- (id)initWithContentsOfFile:(NSString *)inPath;
+- (id)initWithNSImage:(NSImage *)inImage;
 {
-	NSImage *image = [[[NSImage alloc] initWithContentsOfFile:inPath] autorelease];
-	if (!image) {
+	if (!inImage) {
 		[self release];
 		return nil;
 	}
 	//TODO: how to manage the memory of this cgimage
-	CGImageRef imageTemp = [image CGImageForProposedRect:NULL context:NULL hints:nil];
-	self = [self initWithCGImage:imageTemp];
+	CGImageRef imageTemp = [inImage CGImageForProposedRect:NULL context:NULL hints:nil];
+	return [self initWithCGImage:imageTemp];
+}
+
+- (id)initWithContentsOfFile:(NSString *)inPath;
+{
+	NSImage *image = [[[NSImage alloc] initWithContentsOfFile:inPath] autorelease];
 	
-	return self;
+	return [self initWithNSImage:image];
 }
 
 - (id)initWithCGImage:(CGImageRef)inCGImage;
@@ -42,6 +45,12 @@
 	cgImage = inCGImage;
 	
 	return self;
+}
+
+- (id)initWithData:(NSData *)inData;
+{
+	NSImage *image = [[[NSImage alloc] initWithData:inData] autorelease];
+	return [self initWithNSImage:image];
 }
 
 - (void) dealloc
@@ -56,3 +65,11 @@
 }
 
 @end
+
+
+NSData *UIImagePNGRepresentation(UIImage *inImage) {
+	NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:[inImage CGImage]];
+	NSData *outData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
+	[bitmapRep release];
+	return outData;
+}

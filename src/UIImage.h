@@ -15,9 +15,13 @@
 
 + (UIImage *)imageNamed:(NSString *)name;
 
+
 - (CGImageRef)CGImage;
 
+- (id)initWithData:(NSData *)inData;
 - (id)initWithCGImage:(CGImageRef)inCGImage;
 - (id)initWithContentsOfFile:(NSString *)inPath;
 
 @end
+
+NSData *UIImagePNGRepresentation(UIImage *inImage);
