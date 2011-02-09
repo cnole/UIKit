@@ -15,6 +15,7 @@
 
 @implementation UIScrollView
 @synthesize contentView;
+@synthesize delegate;
 
 - (void)setupScrollViewDefaults {
 }
@@ -25,8 +26,9 @@
 	
 	contentView = [[UIView alloc] initWithFrame:self.bounds];
 	self.contentView.autoresizingMask = 0;
+	contentView.backgroundColor = [UIColor grayColor];
 	[super addSubview:contentView];
-
+	
 	scroller = [[UIScrollKnob alloc] initWithScrollView:self];
 	[super addSubview:scroller];
 	
@@ -66,32 +68,41 @@
 	
 	
 	CGRect availableFrame = [self scrollerFrame];
+	CGRect bounds = self.bounds;
 	
-	const CGFloat minimumHeight = 20.0f;
-	
-	CGFloat offset = self.contentOffset.y / self.contentSize.height;
-	CGFloat size = self.frame.size.height / self.contentSize.height;
-	if (size < 1.0f) {
-		scroller.alpha = 1.0f;
-	} else {
-		scroller.alpha = 0.0f;
-	}
-	size = fminf(fmaxf(0.0f, size), 1.0f);
-	
-	CGRect scrollerFrame =  {
-		.origin.x = availableFrame.origin.x,
-		.origin.y = availableFrame.origin.y + offset * availableFrame.size.height,
-		.size.width = availableFrame.size.width,
-		.size.height = fmaxf(minimumHeight, size * availableFrame.size.height),
+	const CGFloat minimumScrollerSize = 20.0f;
+
+	CGPoint maximumContentOffset = (CGPoint) {
+		.x = fmaxf(_contentSize.width - bounds.size.width, 0.0f),
+		.y = fmaxf(_contentSize.height - bounds.size.height, 0.0f),
 	};
 	
-	//Fix scroller going off the end
-	if (scrollerFrame.origin.y + scrollerFrame.size.height > CGRectGetMaxY(availableFrame)) {
-		scrollerFrame.origin.y = CGRectGetMaxY(availableFrame) - scrollerFrame.size.height;
-	}
-	scroller.frame = scrollerFrame;
+	BOOL showVerticalScroller = _contentSize.height > 0.0f && bounds.size.height < _contentSize.height;
 	
-	CGRect bounds = self.bounds;
+	
+	if (showVerticalScroller) {
+		CGFloat verticalScrollerSize = availableFrame.size.height * bounds.size.height / _contentSize.height;
+
+		verticalScrollerSize = fminf(fmaxf(minimumScrollerSize, verticalScrollerSize), availableFrame.size.height);
+	
+		CGRect scrollerFrame =  {
+			.origin.x = availableFrame.origin.x,
+			.origin.y = availableFrame.origin.y + (availableFrame.size.height - verticalScrollerSize) * (_contentOffset.y / maximumContentOffset.y),
+			.size.width = availableFrame.size.width,
+			.size.height = verticalScrollerSize,
+		};
+		
+		//Fix scroller going off the end
+		if (scrollerFrame.origin.y + scrollerFrame.size.height > CGRectGetMaxY(availableFrame)) {
+			scrollerFrame.origin.y = CGRectGetMaxY(availableFrame) - scrollerFrame.size.height;
+		}
+		scroller.frame = scrollerFrame;
+		scroller.alpha = 1.0f;
+	} else {
+		scroller.frame = availableFrame;
+		scroller.alpha = 0.0f;
+	}
+	
 	self.contentView.frame = (CGRect) {
 		.origin.x = 0,
 		.origin.y = 0,

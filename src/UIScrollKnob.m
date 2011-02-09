@@ -21,6 +21,8 @@
 	self = [super initWithFrame:CGRectZero];
 	scrollView = inScrollView;
 	
+	self.contentMode = UIViewContentModeRedraw;
+	
 	return self;
 }
 - (void)drawRect:(CGRect)inRect;

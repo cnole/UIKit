@@ -305,7 +305,7 @@ UIKIT_EXTERN_CLASS @interface UITableView : UIScrollView {
 //_______________________________________________________________________________________________________________
 // this represents the display and behaviour of the cells.
 
-@protocol UITableViewDelegate<NSObject/*, UIScrollViewDelegate*/>
+@protocol UITableViewDelegate<NSObject, UIScrollViewDelegate>
 
 @optional
 
