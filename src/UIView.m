@@ -116,6 +116,7 @@
 {
 	if (viewDelegate) {
 		[self setNextResponder:viewDelegate];
+		[viewDelegate setNextResponder:self.superview];
 	} else {
 		[self setNextResponder:self.superview];
 	}
