@@ -54,13 +54,13 @@ typedef NSUInteger UITableViewCellStateMask;        // available in iPhone 3.0
 
 UIKIT_EXTERN_CLASS @interface UITableViewCell : UIView {
 @private
-    id           _layoutManager;
-    id           _target;
-    SEL          _editAction;
-    SEL          _accessoryAction;
-    id           _oldEditingData;
-    id           _editingData;
-    CGFloat      _rightMargin;
+//    id           _layoutManager;
+//    id           _target;
+//    SEL          _editAction;
+//    SEL          _accessoryAction;
+//    id           _oldEditingData;
+//    id           _editingData;
+//    CGFloat      _rightMargin;
     NSInteger    _indentationLevel;
     CGFloat      _indentationWidth;
     NSString    *_reuseIdentifier;
@@ -70,44 +70,44 @@ UIKIT_EXTERN_CLASS @interface UITableViewCell : UIView {
     UILabel     *_detailTextLabel;
     UIView      *_backgroundView;
     UIView      *_selectedBackgroundView;
-    UIView      *_selectedOverlayView;
+//    UIView      *_selectedOverlayView;
     UIColor     *_separatorColor;
-    UIView      *_floatingSeparatorView;
-    CFMutableDictionaryRef _unhighlightedStates;
-    struct {
-        unsigned int separatorStyle:3;
-        unsigned int selectionFadeFraction:11;	// used to indicate selection
-        unsigned int editingStyle:3;
-        unsigned int showsAccessoryWhenEditing:1;
-        unsigned int showDisclosure:1;
-        unsigned int showTopSeparator:1;
-		
-        unsigned int disclosureClickable:1;
-        unsigned int disclosureStyle:1;
-        unsigned int showingRemoveControl:1;
-        unsigned int sectionLocation:3;
-        unsigned int tableViewStyle:1;
-        unsigned int fontSet:1;
-        unsigned int usingDefaultSelectedBackgroundView:1;
-        unsigned int wasSwiped:1;
-        unsigned int highlighted:1;
-        unsigned int separatorDirty:1;
-        unsigned int drawn:1;
-        unsigned int drawingDisabled:1;
-        unsigned int style:12;
-    } _tableCellFlags;
+//    UIView      *_floatingSeparatorView;
+//    CFMutableDictionaryRef _unhighlightedStates;
+//    struct {
+//        unsigned int separatorStyle:3;
+//        unsigned int selectionFadeFraction:11;	// used to indicate selection
+//        unsigned int editingStyle:3;
+//        unsigned int showsAccessoryWhenEditing:1;
+//        unsigned int showDisclosure:1;
+//        unsigned int showTopSeparator:1;
+//		
+//        unsigned int disclosureClickable:1;
+//        unsigned int disclosureStyle:1;
+//        unsigned int showingRemoveControl:1;
+//        unsigned int sectionLocation:3;
+//        unsigned int tableViewStyle:1;
+//        unsigned int fontSet:1;
+//        unsigned int usingDefaultSelectedBackgroundView:1;
+//        unsigned int wasSwiped:1;
+//        unsigned int highlighted:1;
+//        unsigned int separatorDirty:1;
+//        unsigned int drawn:1;
+//        unsigned int drawingDisabled:1;
+//        unsigned int style:12;
+//    } _tableCellFlags;
     
     UIView *_accessoryView;
     UIView *_editingAccessoryView;
-    UIView *_customAccessoryView;
-    UIView *_customEditingAccessoryView;
+//    UIView *_customAccessoryView;
+//    UIView *_customEditingAccessoryView;
     UIView *_separatorView;
-    UIView *_topSeparatorView;
-    UITextField *_editableTextField;
-    CFAbsoluteTime _lastSelectionTime;
-    NSTimer *_deselectTimer;
-    CGFloat _textFieldOffset;
-    SEL _returnAction;
+//    UIView *_topSeparatorView;
+//    UITextField *_editableTextField;
+//    CFAbsoluteTime _lastSelectionTime;
+//    NSTimer *_deselectTimer;
+//    CGFloat _textFieldOffset;
+//    SEL _returnAction;
 	UITableViewCellSelectionStyle  _selectionStyle;
 	BOOL _isSelected;
 	BOOL _isHighlighted;

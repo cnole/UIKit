@@ -18,7 +18,7 @@
 		[self release];
 		return nil;
 	}
-	return [[[self class] alloc] initWithContentsOfFile:path];
+	return [[[[self class] alloc] initWithContentsOfFile:path] autorelease];
 }
 
 + (UIImage *)imageWithData:(NSData *)inData;
@@ -27,7 +27,7 @@
 		[self release];
 		return nil;
 	}
-	return [[[self class] alloc] initWithData:inData];
+	return [[[[self class] alloc] initWithData:inData] autorelease];
 }
 
 - (id)initWithNSImage:(NSImage *)inImage;

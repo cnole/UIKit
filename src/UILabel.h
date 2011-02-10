@@ -16,7 +16,6 @@
 @class CATextLayer;
 @interface UILabel : UIView {
 @private
-	CATextLayer* _textLayer;
 	NSString* _text;
 	NSFont* _font;
 	UIColor* _textColor;

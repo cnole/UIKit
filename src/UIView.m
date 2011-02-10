@@ -46,6 +46,7 @@
 {
 	layer.delegate = nil;
 	[layer release];
+	[subviews release];
 
 	[super dealloc];
 }
