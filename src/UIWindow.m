@@ -53,12 +53,12 @@
 	[super setFrame:(CGRect) {
 		.size = inFrame.size
 	}];
-	[nsWindow setFrame:NSRectFromCGRect(inFrame) display:YES animate:YES];
+	[nsWindow setFrame:NSRectFromCGRect(inFrame) display:YES animate:NO];
 }
 
 - (CGRect)frame;
 {
-	return NSRectToCGRect([nsWindow contentRectForFrameRect:[nsWindow frame]]);
+	return NSRectToCGRect([nsWindow frame]);
 }
 
 - (UIView *)hitTestFromEvent:(NSEvent *)inEvent;
@@ -91,6 +91,24 @@
 		UIView *scrollView = [self hitTestFromEvent:inEvent];
 		[scrollView scrollWheel:inEvent];
 	}
+}
+
+- (void)mouseDown:(NSEvent *)inEvent;
+{
+	[self makeKeyAndVisible];
+}
+
+- (void)mouseDragged:(NSEvent *)inEvent;
+{
+	CGRect frame = self.frame;
+	frame.origin.x += [inEvent deltaX];
+	frame.origin.y -= [inEvent deltaY];
+	self.frame = frame;
+}
+
+- (void)mouseUp:(NSEvent *)inEvent;
+{
+	
 }
 
 - (void)makeKeyAndVisible;
