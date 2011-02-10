@@ -19,6 +19,8 @@
 		284CBB4F0FAA5201007DBD91 /* UIKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 284CBB4D0FAA5201007DBD91 /* UIKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		284CBB530FAA523F007DBD91 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 284CBB520FAA523F007DBD91 /* QuartzCore.framework */; };
 		284CBB9F0FAA53D7007DBD91 /* UIKitDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		492EC5851303BE8A00DBC011 /* UIControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 492EC5831303BE8900DBC011 /* UIControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		492EC5861303BE8A00DBC011 /* UIControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 492EC5841303BE8A00DBC011 /* UIControl.m */; };
 		494908E512FD225E0035C367 /* CGRoundRect.c in Sources */ = {isa = PBXBuildFile; fileRef = 494908E312FD225E0035C367 /* CGRoundRect.c */; };
 		494908E612FD225E0035C367 /* CGRoundRect.h in Headers */ = {isa = PBXBuildFile; fileRef = 494908E412FD225E0035C367 /* CGRoundRect.h */; };
 		494908E812FD23A70035C367 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 494908E712FD23A70035C367 /* ApplicationServices.framework */; };
@@ -27,6 +29,10 @@
 		4949092612FE75200035C367 /* UITableViewCell-Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 4949092112FE75110035C367 /* UITableViewCell-Private.h */; };
 		4949092712FE75200035C367 /* UITableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 4949092212FE75140035C367 /* UITableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4949092812FE75200035C367 /* UITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949092312FE751B0035C367 /* UITableViewCell.m */; };
+		496F8CA21303D42600E83B49 /* UIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 496F8CA01303D42600E83B49 /* UIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		496F8CA31303D42600E83B49 /* UIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 496F8CA11303D42600E83B49 /* UIButton.m */; };
+		496F8CA61303D52700E83B49 /* UIGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = 496F8CA51303D52700E83B49 /* UIGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		496F8CA81303D55900E83B49 /* UIGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 496F8CA71303D55900E83B49 /* UIGeometry.m */; };
 		497B404412F38FA10051C59B /* UINSWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B404212F38FA10051C59B /* UINSWindow.h */; };
 		497B404512F38FA10051C59B /* UINSWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 497B404312F38FA10051C59B /* UINSWindow.m */; };
 		497B41E712F3A6820051C59B /* UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 497B41E512F3A6820051C59B /* UIImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,6 +75,8 @@
 		284CBB520FAA523F007DBD91 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		284CBB9D0FAA53D7007DBD91 /* UIKitDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKitDefines.h; sourceTree = "<group>"; };
 		32DBCF5E0370ADEE00C91783 /* UIKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIKit_Prefix.pch; sourceTree = "<group>"; };
+		492EC5831303BE8900DBC011 /* UIControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControl.h; sourceTree = "<group>"; };
+		492EC5841303BE8A00DBC011 /* UIControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIControl.m; sourceTree = "<group>"; };
 		494908E312FD225E0035C367 /* CGRoundRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CGRoundRect.c; sourceTree = "<group>"; };
 		494908E412FD225E0035C367 /* CGRoundRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGRoundRect.h; sourceTree = "<group>"; };
 		494908E712FD23A70035C367 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
@@ -77,6 +85,10 @@
 		4949092112FE75110035C367 /* UITableViewCell-Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell-Private.h"; sourceTree = "<group>"; };
 		4949092212FE75140035C367 /* UITableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewCell.h; sourceTree = "<group>"; };
 		4949092312FE751B0035C367 /* UITableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewCell.m; sourceTree = "<group>"; };
+		496F8CA01303D42600E83B49 /* UIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButton.h; sourceTree = "<group>"; };
+		496F8CA11303D42600E83B49 /* UIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIButton.m; sourceTree = "<group>"; };
+		496F8CA51303D52700E83B49 /* UIGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGeometry.h; sourceTree = "<group>"; };
+		496F8CA71303D55900E83B49 /* UIGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIGeometry.m; sourceTree = "<group>"; };
 		497B404212F38FA10051C59B /* UINSWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINSWindow.h; sourceTree = "<group>"; };
 		497B404312F38FA10051C59B /* UINSWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINSWindow.m; sourceTree = "<group>"; };
 		497B41E512F3A6820051C59B /* UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImage.h; sourceTree = "<group>"; };
@@ -158,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				284CBB4D0FAA5201007DBD91 /* UIKit.h */,
+				496F8CA51303D52700E83B49 /* UIGeometry.h */,
+				496F8CA71303D55900E83B49 /* UIGeometry.m */,
 				C3E48EC2112372A20061E0D8 /* UIApplication.h */,
 				C3E48EC3112372A20061E0D8 /* UIApplication.m */,
 				28092F9E1013793B00AE0F9A /* UIColor.h */,
@@ -196,6 +210,10 @@
 				494908E312FD225E0035C367 /* CGRoundRect.c */,
 				49AEA3E412FF5FBF003664DA /* UIViewController.h */,
 				49AEA3E512FF5FBF003664DA /* UIViewController.m */,
+				492EC5831303BE8900DBC011 /* UIControl.h */,
+				492EC5841303BE8A00DBC011 /* UIControl.m */,
+				496F8CA01303D42600E83B49 /* UIButton.h */,
+				496F8CA11303D42600E83B49 /* UIButton.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -255,6 +273,9 @@
 				4949092612FE75200035C367 /* UITableViewCell-Private.h in Headers */,
 				4949092712FE75200035C367 /* UITableViewCell.h in Headers */,
 				49AEA3E612FF5FBF003664DA /* UIViewController.h in Headers */,
+				492EC5851303BE8A00DBC011 /* UIControl.h in Headers */,
+				496F8CA21303D42600E83B49 /* UIButton.h in Headers */,
+				496F8CA61303D52700E83B49 /* UIGeometry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +359,9 @@
 				4949092512FE75200035C367 /* UITableView.m in Sources */,
 				4949092812FE75200035C367 /* UITableViewCell.m in Sources */,
 				49AEA3E712FF5FBF003664DA /* UIViewController.m in Sources */,
+				492EC5861303BE8A00DBC011 /* UIControl.m in Sources */,
+				496F8CA31303D42600E83B49 /* UIButton.m in Sources */,
+				496F8CA81303D55900E83B49 /* UIGeometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
