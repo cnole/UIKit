@@ -439,6 +439,74 @@
 @end
 
 
+@interface UIViewAnimationGroup : NSObject {
+}
+@property (nonatomic) NSTimeInterval delay;
+@property (nonatomic) NSTimeInterval duration;
+
++ (NSMutableArray *)animationGroupStack;
+
++ (UIViewAnimationGroup *)currentAnimationGroup;
+
++ (void)begin;
++ (void)commit;
+
+@end
+
+@implementation UIViewAnimationGroup
+@synthesize delay;
+@synthesize duration;
++ (NSMutableArray *)animationGroupStack;
+{
+	static NSMutableArray *animationGroupStack;
+	if (!animationGroupStack) {
+		animationGroupStack = [[NSMutableArray alloc] init];
+	}
+	return animationGroupStack;
+}
+
++ (UIViewAnimationGroup *)currentAnimationGroup;
+{
+	NSMutableArray *animationGroupStack = [self animationGroupStack];
+	if (animationGroupStack.count > 0) {
+		return [animationGroupStack objectAtIndex:animationGroupStack.count - 1];
+	} else {
+		return nil;
+	}
+}
+
++ (void)begin;
+{
+	UIViewAnimationGroup *group = [[[UIViewAnimationGroup alloc] init] autorelease];
+	[[self animationGroupStack] addObject:group];
+}
+
++ (void)commit;
+{
+	[[self animationGroupStack] removeLastObject];
+}
+
+
+@end
+
+
+@interface UIViewAnimation : NSObject <CAAction> {
+	
+}
+@property (nonatomic, retain) CABasicAnimation *animation;
+@end
+
+@implementation UIViewAnimation
+@synthesize animation;
+- (void)runActionForKey:(NSString *)event object:(id)anObject arguments:(NSDictionary *)dict;
+{
+	CALayer *layer = (CALayer *)anObject;
+	animation.toValue = [layer valueForKey:event];
+	[layer addAnimation:animation forKey:@"Blah"];
+}
+@end
+
+
 @implementation UIView (CALayerDelegate)
 
 - (void)layoutSublayersOfLayer:(CALayer *)inLayer;
@@ -459,9 +527,58 @@
 	UIGraphicsPopContext();
 }
 
-- (id<CAAction>)actionForLayer:(CALayer *)layer forKey:(NSString *)event;
+- (id<CAAction>)actionForLayer:(CALayer *)inLayer forKey:(NSString *)event;
 {
-	return (id)[NSNull null];
+	UIViewAnimationGroup *group = [UIViewAnimationGroup currentAnimationGroup];
+	if (group) {
+		UIViewAnimation *viewAnimation = [[[UIViewAnimation alloc] init] autorelease];
+		CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:event];
+		animation.duration = group.duration;
+		animation.fromValue = [inLayer valueForKey:event];
+		viewAnimation.animation = animation;
+		return viewAnimation;
+	} else {
+		return (id)[NSNull null];		
+	}
 }
+
+@end
+
+
+@implementation UIView (UIViewAnimationWithBlocks)
+
++ (void)animateWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
+{
+	[UIViewAnimationGroup begin];
+	UIViewAnimationGroup *group = [UIViewAnimationGroup currentAnimationGroup];
+	group.duration = duration;
+	group.delay = delay;
+	[CATransaction begin];
+	[CATransaction setAnimationDuration:duration];
+	//TODO: delay
+	if (animations)
+		animations();
+	
+	//TODO: pass back whether we actually finished!
+	if (completion) {
+		[CATransaction setCompletionBlock:^{completion(YES);}];
+	}
+	[CATransaction commit];
+	[UIViewAnimationGroup commit];
+}
+
++ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
+{
+	[self animateWithDuration:duration delay:0.0 options:0 animations:animations completion:completion];
+}
+
++ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations;
+{
+	[self animateWithDuration:duration delay:0.0 options:0 animations:animations completion:NULL];
+}
+
+//TODO: + (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
+
+//TODO: + (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion; // toView added to fromView.superview, fromView removed from its superview
 
 @end

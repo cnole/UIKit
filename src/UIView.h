@@ -50,6 +50,29 @@ enum {
 };
 typedef NSUInteger UIViewAutoresizing;
 
+enum {
+    UIViewAnimationOptionLayoutSubviews            = 1 <<  0,
+    UIViewAnimationOptionAllowUserInteraction      = 1 <<  1, // turn on user interaction while animating
+    UIViewAnimationOptionBeginFromCurrentState     = 1 <<  2, // start all views from current value, not initial value
+    UIViewAnimationOptionRepeat                    = 1 <<  3, // repeat animation indefinitely
+    UIViewAnimationOptionAutoreverse               = 1 <<  4, // if repeat, run animation back and forth
+    UIViewAnimationOptionOverrideInheritedDuration = 1 <<  5, // ignore nested duration
+    UIViewAnimationOptionOverrideInheritedCurve    = 1 <<  6, // ignore nested duration
+    UIViewAnimationOptionAllowAnimatedContent      = 1 <<  7, // animate contents (applies to transitions only)
+    UIViewAnimationOptionShowHideTransitionViews   = 1 <<  8, // flip to/from hidden state instead of adding/removing
+    
+    UIViewAnimationOptionCurveEaseInOut            = 0 << 16, // default
+    UIViewAnimationOptionCurveEaseIn               = 1 << 16,
+    UIViewAnimationOptionCurveEaseOut              = 2 << 16,
+    UIViewAnimationOptionCurveLinear               = 3 << 16,
+    
+    UIViewAnimationOptionTransitionNone            = 0 << 20, // default
+    UIViewAnimationOptionTransitionFlipFromLeft    = 1 << 20,
+    UIViewAnimationOptionTransitionFlipFromRight   = 2 << 20,
+    UIViewAnimationOptionTransitionCurlUp          = 3 << 20,
+    UIViewAnimationOptionTransitionCurlDown        = 4 << 20,
+};
+typedef NSUInteger UIViewAnimationOptions;
 
 
 @class CALayer;
@@ -141,5 +164,20 @@ typedef NSUInteger UIViewAutoresizing;
 @property(nonatomic,getter=isHidden) BOOL              hidden;                     // default is NO. doesn't check superviews
 @property(nonatomic)                 UIViewContentMode contentMode;                // default is UIViewContentModeScaleToFill
 //@property(nonatomic)                 CGRect            contentStretch __OSX_AVAILABLE_STARTING(__MAC_NA,__IPHONE_3_0); // animatable. default is unit rectangle {{0,0} {1,1}}
+
+@end
+
+
+@interface UIView(UIViewAnimationWithBlocks)
+
++ (void)animateWithDuration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
+
++ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion; // delay = 0.0, options = 0
+
++ (void)animateWithDuration:(NSTimeInterval)duration animations:(void (^)(void))animations; // delay = 0.0, options = 0, completion = NULL
+
++ (void)transitionWithView:(UIView *)view duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL finished))completion;
+
++ (void)transitionFromView:(UIView *)fromView toView:(UIView *)toView duration:(NSTimeInterval)duration options:(UIViewAnimationOptions)options completion:(void (^)(BOOL finished))completion; // toView added to fromView.superview, fromView removed from its superview
 
 @end
