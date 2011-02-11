@@ -275,6 +275,24 @@
 	return [[super description] stringByAppendingFormat:@"{frame:%@}", NSStringFromRect(NSRectFromCGRect(self.frame))];
 }
 
+- (NSString *)_recursiveDescriptionWithLevel:(NSUInteger)inLevel;
+{
+	NSString *indent = @"";
+	for (int i=0; i<inLevel; i++) {
+		indent = [indent stringByAppendingString:@" | "];
+	}
+	NSString *str = [NSString stringWithFormat:@"%@%@\n", indent, [self description]];
+	for (UIView *view in self.subviews) {
+		str = [str stringByAppendingString:[view _recursiveDescriptionWithLevel:inLevel+1]];
+	}
+	return str;
+}
+
+
+- (NSString *)recursiveDescription;
+{
+	return [self _recursiveDescriptionWithLevel:0];
+}
 @end
 
 @implementation UIView(UIViewRendering)
