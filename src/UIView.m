@@ -502,7 +502,7 @@
 {
 	CALayer *layer = (CALayer *)anObject;
 	animation.toValue = [layer valueForKey:event];
-	[layer addAnimation:animation forKey:@"Blah"];
+	[layer addAnimation:animation forKey:event];
 }
 @end
 
